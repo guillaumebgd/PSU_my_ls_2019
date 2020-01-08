@@ -9,5 +9,5 @@
 
 void handle_second_arg(char **args)
 {
-    //flags_t list_flags;
+    (void)args;
 }
