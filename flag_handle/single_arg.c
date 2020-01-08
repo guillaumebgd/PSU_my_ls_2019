@@ -5,6 +5,7 @@
 ** single_arg.c
 */
 
+#include "my_ls.h"
 #include "my.h"
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -44,6 +45,7 @@ static void get_files(struct dirent **dir_stat, char ***stock_files, DIR **direc
 static void print_stock_files(char **print_stock_files,
                                 const unsigned int nb_list)
 {
+    char *solve = NULL;
     unsigned int i = 0;
 
     if (nb_list == 0)
@@ -53,9 +55,11 @@ static void print_stock_files(char **print_stock_files,
         if (i == nb_list - 1)
             my_putchar('\n');
         else
-            my_putchar(' ');
+            my_putstr("  ");
         i += 1;
     }
+    if (solve != NULL)
+        free(solve);
 }
 
 void single_arg(void)
@@ -70,5 +74,6 @@ void single_arg(void)
     if (stock_files == NULL)
         return;
     get_files(&dir_stat, &stock_files, &directory);
+    sort_stock_files(&stock_files, nb_list);
     print_stock_files(stock_files, nb_list);
 }

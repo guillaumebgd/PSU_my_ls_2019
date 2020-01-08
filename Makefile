@@ -7,6 +7,7 @@
 
 SRC		=	./flag_handle/flag_precision.c		\
 			./flag_handle/single_arg.c			\
+			./flag_handle/sort_stock_files.c	\
 			./flag_handle/handle_second_arg.c
 
 MAIN	=	./main.c

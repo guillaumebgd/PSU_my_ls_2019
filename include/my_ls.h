@@ -22,4 +22,6 @@ typedef struct flags_s {
 void single_arg(void);
 void handle_second_arg(char **);
 
+void sort_stock_files(char ***, const unsigned int);
+
 #endif /* MY_LS_H_ */

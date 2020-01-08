@@ -5,14 +5,12 @@
 ## makefile for lib
 ##
 
-SRC	=	./my_getnbr.c		\
-		./my_putchar.c		\
-		./my_put_nbr.c		\
+SRC	=	./my_putchar.c		\
 		./my_putstr.c		\
 		./my_strlen.c		\
-		./my_strcmp.c		\
 		./my_strdup.c		\
-		./my_strcat.c
+		./my_strcmp.c		\
+		./my_is_uppercase.c
 
 CFLAGS	=	-Wall -Wextra -I./../../include/
 
