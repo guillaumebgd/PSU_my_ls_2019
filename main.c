@@ -10,8 +10,9 @@
 int main(int ac, char **av)
 {
     if (ac == 1)
-        single_arg();
-    if (ac == 2)
-        handle_second_arg(&av[1]);
+        single_arg("./");
+    else
+        single_arg(av[1]);
+    //handle_second_arg(&av[1]);
     return (0);
 }

@@ -19,7 +19,7 @@ typedef struct flags_s {
     unsigned int flag_t;
 } flags_t;
 
-void single_arg(void);
+void single_arg(const char *);
 void handle_second_arg(char **);
 
 void sort_stock_files(char ***, const unsigned int);
