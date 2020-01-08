@@ -17,22 +17,28 @@ NAME	=	my_ls
 
 CRIT	=	-lcriterion --coverage
 
-LIB		=	-L./my_printf -lmy
+LIB		=	-L./lib/my -lmy
 
 all:	$(NAME)
 
 $(NAME):
-	$(MAKE) -C ./my_printf
+	$(MAKE) -C ./lib/my
 	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS)
 
-valgrind:
-	$(MAKE) -C ./my_printf
+debug:
+	$(MAKE) -C ./lib/my
 	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
-	valgrind ./$(NAME)
+	gdb ./$(NAME)
+	$(RM) $(NAME)
+
+valgrind:
+	$(MAKE) -C ./lib/my
+	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
+	valgrind --leak-check=full ./$(NAME)
 	$(RM) $(NAME)
 
 tests_run:
-	$(MAKE) -C ./my_printf
+	$(MAKE) -C ./lib/my
 	$(RM) *.gcda *.gcno
 	$(CC) -o unit_tests $(SRC) tests/*.c $(LIB) $(CRIT) $(CFLAGS)
 	./unit_tests
@@ -48,13 +54,9 @@ clean:
 	$(RM) *.gcda *.gcno
 
 fclean:	clean
-	$(RM) my_printf/*.a
-	$(RM) my_printf/src/compute_functions/*.o
-	$(RM) my_printf/src/my_printf/find_flag/*.o
-	$(RM) my_printf/src/my_printf/redirections/flags/*.o
-	$(RM) my_printf/src/my_printf/redirections/modifiers/*.o
-	$(RM) my_printf/src/my_printf/*.o
+	$(RM) lib/my/*.a
+	$(RM) lib/my/*.o
 
 re:	fclean all
 
-.PHONY: all tests_run coverage clean fclean re
+.PHONY: all debug valgrind tests_run coverage clean fclean re

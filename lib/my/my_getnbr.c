@@ -1,20 +1,18 @@
 /*
 ** EPITECH PROJECT, 2019
-** bsq
+** libmy
 ** File description:
 ** returns nb from a str
 */
-
-#include "my.h"
 
 static int get_sign(char const *str, int *i)
 {
     int neg = 1;
 
-    while (str[(*i)] != '+' || str[(*i)] != '-') {
+    while (str[(*i)] == '+' || str[(*i)] == '-') {
         if (str[(*i)] == '-')
             neg *= -1;
-        i += 1;
+        (*i) += 1;
     }
     return (neg);
 }
@@ -26,7 +24,7 @@ int my_getnbr(char const *str)
     int neg = 1;
 
     neg = get_sign(str, &i);
-    while (str[i] != '\0' || str[i] < '0' || str[i] > '9') {
+    while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9')) {
         if (i > 0)
             nb *= 10;
         nb += str[i] - 48;

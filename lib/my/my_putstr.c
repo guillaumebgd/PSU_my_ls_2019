@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_printf
+** libmy
 ** File description:
-** put chars from a str
+** put chars from a string
 */
 
 #include "my.h"
 #include <unistd.h>
 
-int my_putstr(char const *str, int *printed_chars)
+int my_putstr(char const *str)
 {
     int size = my_strlen(str);
 
@@ -16,6 +16,5 @@ int my_putstr(char const *str, int *printed_chars)
         return (84);
     if (write(1, str, size) < 0)
         return (84);
-    (*printed_chars) += size;
     return (0);
 }
