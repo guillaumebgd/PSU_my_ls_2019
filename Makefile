@@ -48,8 +48,12 @@ clean:
 	$(RM) *.gcda *.gcno
 
 fclean:	clean
-	$(RM) ./my_printf/*.a
-	$(RM) ./my_printf/src/*.o
+	$(RM) my_printf/*.a
+	$(RM) my_printf/src/compute_functions/*.o
+	$(RM) my_printf/src/my_printf/find_flag/*.o
+	$(RM) my_printf/src/my_printf/redirections/flags/*.o
+	$(RM) my_printf/src/my_printf/redirections/modifiers/*.o
+	$(RM) my_printf/src/my_printf/*.o
 
 re:	fclean all
 
