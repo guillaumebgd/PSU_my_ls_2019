@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-static void swap_stats(struct stat *first, struct stat *second)
+void swap_stats(struct stat *first, struct stat *second)
 {
     struct stat tmp;
 

@@ -7,7 +7,6 @@
 
 #include "my_ls.h"
 #include "my.h"
-#include <sys/stat.h>
 #include <sys/sysmacros.h>
 
 static void print_file_type(file_list_t *tmp)
