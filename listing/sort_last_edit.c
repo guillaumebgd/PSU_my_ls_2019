@@ -16,7 +16,7 @@ static unsigned int check_if_sorted(file_list_t **head)
     file_list_t *tmp = (*head);
 
     while (tmp != (*head)->prev) {
-        if (tmp->file_stat.st_mtime <= tmp->next->file_stat.st_mtime)
+        if (tmp->file_stat.st_mtime < tmp->next->file_stat.st_mtime)
             return (1);
         tmp = tmp->next;
     }
@@ -31,7 +31,7 @@ void sort_last_edit(file_list_t **head)
         return;
     while (check_if_sorted(head) == 1) {
         while (tmp != (*head)->prev) {
-            if (tmp->file_stat.st_mtime <= tmp->next->file_stat.st_mtime) {
+            if (tmp->file_stat.st_mtime < tmp->next->file_stat.st_mtime) {
                 my_str_swap(&tmp->name, &tmp->next->name);
                 swap_stats(&tmp, &tmp->next);
             }
