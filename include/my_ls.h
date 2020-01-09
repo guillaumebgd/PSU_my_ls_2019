@@ -21,14 +21,8 @@ typedef struct flags_s {
     unsigned int flag_t;
 } flags_t;
 
-typedef struct info_dir_s {
-    struct dirent *dir_stat;
-    DIR *directory;
-    char **stock_files;
-    unsigned int nb_list;
-} info_dir_t;
-
 typedef struct file_list_s {
+    struct stat file_stat;
     char *name;
     struct file_list_s *next;
     struct file_list_s *prev;
