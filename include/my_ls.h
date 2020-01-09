@@ -58,6 +58,8 @@ void apply_lower_r(file_list_t **);
 void my_ls(file_list_t **, flags_t);
 
 void swap_stats(struct stat *, struct stat *);
+void swap_grp(struct group **, struct group **);
+void swap_pwd(struct passwd **, struct passwd **);
 void sort_names(file_list_t **);
 
 void free_list(file_list_t **);

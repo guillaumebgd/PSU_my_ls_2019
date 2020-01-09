@@ -19,6 +19,24 @@ void swap_stats(struct stat *first, struct stat *second)
     (*second) = tmp;
 }
 
+void swap_grp(struct group **first, struct group **second)
+{
+    struct group *tmp;
+
+    tmp = (*first);
+    (*first) = (*second);
+    (*second) = tmp;
+}
+
+void swap_pwd(struct passwd **first, struct passwd **second)
+{
+    struct passwd *tmp;
+
+    tmp = (*first);
+    (*first) = (*second);
+    (*second) = tmp;
+}
+
 static unsigned int check_if_sorted(file_list_t **head)
 {
     file_list_t *tmp = (*head);
@@ -51,6 +69,8 @@ void sort_names(file_list_t **head)
             if (my_strcmp(tmp->name, tmp->next->name) > 0) {
                 my_str_swap(&tmp->name, &tmp->next->name);
                 swap_stats(&tmp->file_stat, &tmp->next->file_stat);
+                swap_grp(&tmp->grp_info, &tmp->grp_info);
+                swap_pwd(&tmp->pwd, &tmp->pwd);
             }
             tmp = tmp->next;
         }
