@@ -46,7 +46,8 @@ void my_ls(file_list_t **head, flags_t mode)
 {
     if ((*head) == NULL)
         return;
-    sort_names(head);
+    if (mode.flag_t != 1)
+        sort_names(head);
     if (mode.flag_lower_r == 1)
         apply_lower_r(head);
     print_stock_files(head, mode);
