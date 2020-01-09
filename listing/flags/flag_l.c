@@ -64,7 +64,12 @@ void print_flag_l(file_list_t *tmp)
     my_putchar(1, ' ');
     my_putstr(1, getgrgid(tmp->grp_info)->gr_name);
     my_putchar(1, ' ');
-    my_put_nbr(1, tmp->file_stat.st_size, "0123456789", 10);
+    if (S_ISCHR(tmp->file_stat.st_mode)) {
+        my_put_nbr(1, major(tmp->file_stat.st_rdev), "0123456789", 10);
+        my_putstr(1, ", ");
+        my_put_nbr(1, minor(tmp->file_stat.st_rdev), "0123456789", 10);
+    } else
+        my_put_nbr(1, tmp->file_stat.st_size, "0123456789", 10);
     my_putchar(1, ' ');
     print_time(tmp);
     my_putchar(1, ' ');
