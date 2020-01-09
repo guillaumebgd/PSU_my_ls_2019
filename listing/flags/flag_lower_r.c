@@ -17,7 +17,7 @@ static unsigned int get_nb_nodes(file_list_t **head)
     if ((*head) == NULL)
         return (0);
     tmp = (*head);
-    while (tmp != (*head)->next) {
+    while (tmp != (*head)->prev) {
         i += 1;
         tmp = tmp->next;
     }
@@ -36,7 +36,7 @@ void apply_lower_r(file_list_t **head)
     begin = (*head);
     end = (*head)->prev;
     nb_nodes = get_nb_nodes(head);
-    while (pos <= (nb_nodes / 2)) {
+    while (pos < (nb_nodes / 2)) {
         my_str_swap(&begin->name, &end->name);
         swap_stats(&begin->file_stat, &end->file_stat);
         begin = begin->next;
