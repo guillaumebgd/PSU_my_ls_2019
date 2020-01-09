@@ -16,7 +16,7 @@ Test(my_ls, simple_my_ls_no_flag)
     flags_t mode;
 
     cr_redirect_stdout();
-    get_info(2, &argv[1], &head, &mode);
+    get_info(1, &argv[1], &head, &mode);
     my_ls(&head, mode);
     free_list(&head);
     cr_assert_stdout_eq_str("flag_l.c\n"
