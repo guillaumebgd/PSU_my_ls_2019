@@ -18,4 +18,8 @@ void directory_error(int error, const char *pathway)
         my_putchar(2, '\'');
         my_putstr(2, ": No such file or directory\n");
     }
+    if (error == ENOTDIR) {
+        my_putstr(1, pathway);
+        my_putchar(1, '\n');
+    }
 }
