@@ -8,6 +8,8 @@
 #include "my_ls.h"
 #include "my.h"
 #include <sys/sysmacros.h>
+#include <time.h>
+#include <pwd.h>
 
 static void print_file_type(file_list_t *tmp)
 {
@@ -51,6 +53,14 @@ static void print_first_column(file_list_t *tmp)
 void print_flag_l(file_list_t *tmp)
 {
     print_first_column(tmp);
+    my_put_nbr(1, tmp->file_stat.st_nlink, "0123456789", 10);
+    my_putchar(1, ' ');
+    my_putstr(1, tmp->pwd->pw_name);
+    my_putchar(1, ' ');
+    my_putstr(1, tmp->grp_info->gr_name);
+    my_putchar(1, ' ');
     my_put_nbr(1, tmp->file_stat.st_size, "0123456789", 10);
+    my_putchar(1, ' ');
+    print_time(tmp);
     my_putchar(1, ' ');
 }

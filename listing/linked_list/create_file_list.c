@@ -28,7 +28,8 @@ static void init_nodes_values(file_list_t *node,
 {
     node->name = my_strdup(dir_stat->d_name);
     stat(file_path, &node->file_stat);
-    node->grp_info = getgrnam(file_path);
+    node->grp_info = getgrgid(node->file_stat.st_gid);
+    node->pwd = getpwuid(node->file_stat.st_uid);
     free(file_path);
 }
 
