@@ -14,12 +14,12 @@ static void print_stock_files(file_list_t **head)
     file_list_t *tmp = (*head);
 
     while (tmp != (*head)->prev) {
-        my_putstr(tmp->name);
-        my_putchar('\n');
+        my_putstr(1, tmp->name);
+        my_putchar(1, '\n');
         tmp = tmp->next;
     }
-    my_putstr(tmp->name);
-    my_putchar('\n');
+    my_putstr(1, tmp->name);
+    my_putchar(1, '\n');
 }
 
 void my_ls(file_list_t **head)

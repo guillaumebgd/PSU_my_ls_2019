@@ -39,14 +39,16 @@ static file_list_t *add_first_node(file_list_t **head,
     return (new_node);
 }
 
-void create_file_list(file_list_t **head, const char *pathway)
+int create_file_list(file_list_t **head, const char *pathway)
 {
     struct dirent *dir_stat = NULL;
     DIR *directory = NULL;
 
     directory = opendir(pathway);
-    if (directory == NULL)
-        return;
+    if (directory == NULL) {
+        directory_error(errno, pathway);
+        return (84);
+    }
     dir_stat = readdir(directory);
     while (dir_stat != NULL) {
         if ((*head) == NULL && dir_stat->d_name[0] != '.')
@@ -56,4 +58,5 @@ void create_file_list(file_list_t **head, const char *pathway)
         dir_stat = readdir(directory);
     }
     closedir(directory);
+    return (0);
 }

@@ -9,10 +9,10 @@
 
 #define MY_H_
 
-int my_putchar(const char);
+int my_putchar(int, const char);
 
 int my_strlen(char const *);
-int my_putstr(char const *);
+int my_putstr(int, char const *);
 
 unsigned int my_is_uppercase(const char);
 int my_strcmp(char *, char *);

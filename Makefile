@@ -5,15 +5,16 @@
 ## compiles c files into a lib
 ##
 
-SRC		=	./listing/my_ls.c							\
-			./listing/sort_names.c						\
-			./listing/get_information/set_mode.c		\
-			./listing/get_information/get_info.c		\
-			./listing/get_information/get_mode.c		\
-			./listing/initializers/init_set_mode.c		\
-			./listing/initializers/init_modes.c			\
-			./listing/linked_list/create_file_list.c	\
-			./listing/linked_list/free_list.c
+SRC		=	./listing/my_ls.c								\
+			./listing/sort_names.c							\
+			./listing/get_information/set_mode.c			\
+			./listing/get_information/get_info.c			\
+			./listing/get_information/get_mode.c			\
+			./listing/initializers/init_set_mode.c			\
+			./listing/initializers/init_modes.c				\
+			./listing/linked_list/create_file_list.c		\
+			./listing/linked_list/free_list.c				\
+			./listing/linked_list/directory_read_error.c
 
 MAIN	=	./main.c
 

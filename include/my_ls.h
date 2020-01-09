@@ -50,7 +50,8 @@ void flag_d(flags_t *);
 void flag_lower_r(flags_t *);
 void flag_t(flags_t *);
 
-void create_file_list(file_list_t **, const char *);
+int create_file_list(file_list_t **, const char *);
+void directory_error(int, const char *);
 
 void my_ls(file_list_t **);
 void sort_names(file_list_t **);

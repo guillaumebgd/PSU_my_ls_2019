@@ -7,9 +7,9 @@
 
 #include <unistd.h>
 
-int my_putchar(const char c)
+int my_putchar(int fd, const char c)
 {
-    if (write(1, &c, 1) < 0)
+    if (write(fd, &c, 1) < 0)
         return (84);
     return (0);
 }
