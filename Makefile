@@ -41,7 +41,7 @@ debug:
 valgrind:
 	$(MAKE) -C ./lib/my
 	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
-	valgrind --leak-check=full ./$(NAME) a
+	valgrind --leak-check=full ./$(NAME)
 	$(RM) $(NAME)
 
 tests_run:
@@ -59,6 +59,7 @@ coverage:
 clean:
 	$(RM) $(NAME)
 	$(RM) *.gcda *.gcno
+	$(RM) vgcore.*
 
 fclean:	clean
 	$(RM) lib/my/*.a
