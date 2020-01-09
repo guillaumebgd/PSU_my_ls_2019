@@ -8,6 +8,7 @@
 #include "my_ls.h"
 #include "my.h"
 #include <stdlib.h>
+#include <errno.h>
 
 static file_list_t *add_node(file_list_t **head,
                             struct dirent *dir_stat)
@@ -44,6 +45,8 @@ void create_file_list(file_list_t **head, const char *pathway)
     DIR *directory = NULL;
 
     directory = opendir(pathway);
+    if (directory == NULL)
+        return;
     dir_stat = readdir(directory);
     while (dir_stat != NULL) {
         if ((*head) == NULL && dir_stat->d_name[0] != '.')
