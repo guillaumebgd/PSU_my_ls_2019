@@ -10,7 +10,9 @@ SRC	=	./my_putchar.c		\
 		./my_strlen.c		\
 		./my_strdup.c		\
 		./my_strcmp.c		\
-		./my_is_uppercase.c
+		./my_is_uppercase.c	\
+		./my_strcat.c		\
+		./my_str_swap.c
 
 CFLAGS	=	-Wall -Wextra -I./../../include/
 

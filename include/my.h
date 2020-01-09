@@ -17,5 +17,7 @@ int my_putstr(char const *);
 unsigned int my_is_uppercase(const char);
 int my_strcmp(char *, char *);
 char *my_strdup(char const *);
+char *my_strcat(char const *, char const *);
+void my_str_swap(char **, char **);
 
 #endif /* MY_H_ */

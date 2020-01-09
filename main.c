@@ -6,13 +6,17 @@
 */
 
 #include "my_ls.h"
+#include <stddef.h>
 
 int main(int ac, char **av)
 {
+    file_list_t *head = NULL;
+    flags_t mode;
+
     if (ac == 1)
-        single_arg("./");
+        get_info(0, NULL, &head, &mode);
     else
-        single_arg(av[1]);
-    //handle_second_arg(&av[1]);
+        get_info(ac - 1, &av[1], &head, &mode);
+    my_ls(&head);
     return (0);
 }

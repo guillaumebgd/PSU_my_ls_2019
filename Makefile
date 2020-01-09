@@ -5,10 +5,14 @@
 ## compiles c files into a lib
 ##
 
-SRC		=	./flag_handle/flag_precision.c		\
-			./flag_handle/single_arg.c			\
-			./flag_handle/sort_stock_files.c	\
-			./flag_handle/handle_second_arg.c
+SRC		=	./listing/my_ls.c							\
+			./listing/sort_names.c						\
+			./listing/get_information/set_mode.c		\
+			./listing/get_information/get_info.c		\
+			./listing/get_information/get_mode.c		\
+			./listing/initializers/init_set_mode.c		\
+			./listing/initializers/init_modes.c			\
+			./listing/linked_list/create_file_list.c	\
 
 MAIN	=	./main.c
 
