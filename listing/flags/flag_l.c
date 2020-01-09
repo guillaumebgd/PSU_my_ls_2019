@@ -9,7 +9,6 @@
 #include "my.h"
 #include <sys/sysmacros.h>
 #include <time.h>
-#include <pwd.h>
 
 static void print_file_type(file_list_t *tmp)
 {
@@ -27,9 +26,6 @@ static void print_file_type(file_list_t *tmp)
         return;
     } if (S_ISFIFO(tmp->file_stat.st_mode)) {
         my_putchar(1, 'p');
-        return;
-    } if (S_ISSOCK(tmp->file_stat.st_mode)) {
-        my_putchar(1, 's');
         return;
     }
     my_putchar(1, '-');
