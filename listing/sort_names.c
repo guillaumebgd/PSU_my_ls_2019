@@ -7,7 +7,17 @@
 
 #include "my_ls.h"
 #include "my.h"
+#include <sys/stat.h>
 #include <stddef.h>
+
+static void swap_stats(struct stat *first, struct stat *second)
+{
+    struct stat tmp;
+
+    tmp = (*first);
+    (*first) = (*second);
+    (*second) = tmp;
+}
 
 static unsigned int check_if_sorted(file_list_t **head)
 {
@@ -38,8 +48,10 @@ void sort_names(file_list_t **head)
         return;
     while (check_if_sorted(head) == 1) {
         while (tmp != (*head)->prev) {
-            if (my_strcmp(tmp->name, tmp->next->name) > 0)
+            if (my_strcmp(tmp->name, tmp->next->name) > 0) {
                 my_str_swap(&tmp->name, &tmp->next->name);
+                swap_stats(&tmp->file_stat, &tmp->next->file_stat);
+            }
             tmp = tmp->next;
         }
         tmp = (*head);

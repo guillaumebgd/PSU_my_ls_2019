@@ -17,7 +17,7 @@ int main(int ac, char **av)
         get_info(0, NULL, &head, &mode);
     else
         get_info(ac, &av[1], &head, &mode);
-    my_ls(&head);
+    my_ls(&head, mode);
     free_list(&head);
     return (0);
 }

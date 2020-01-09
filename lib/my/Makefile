@@ -12,7 +12,8 @@ SRC	=	./my_putchar.c		\
 		./my_strcmp.c		\
 		./my_is_uppercase.c	\
 		./my_strcat.c		\
-		./my_str_swap.c
+		./my_str_swap.c		\
+		./my_put_nbr.c
 
 CFLAGS	=	-Wall -Wextra -I./../../include/
 

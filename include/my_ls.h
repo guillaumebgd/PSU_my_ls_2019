@@ -47,7 +47,9 @@ void flag_t(flags_t *);
 int create_file_list(file_list_t **, const char *);
 void directory_error(int, const char *);
 
-void my_ls(file_list_t **);
+void print_flag_l(file_list_t *);
+
+void my_ls(file_list_t **, flags_t);
 void sort_names(file_list_t **);
 
 void free_list(file_list_t **);

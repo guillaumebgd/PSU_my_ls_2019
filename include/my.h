@@ -20,4 +20,6 @@ char *my_strdup(char const *);
 char *my_strcat(char const *, char const *);
 void my_str_swap(char **, char **);
 
+void my_put_nbr(int, int, char const *, unsigned int);
+
 #endif /* MY_H_ */

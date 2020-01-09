@@ -14,7 +14,8 @@ SRC		=	./listing/my_ls.c								\
 			./listing/initializers/init_modes.c				\
 			./listing/linked_list/create_file_list.c		\
 			./listing/linked_list/free_list.c				\
-			./listing/linked_list/directory_read_error.c
+			./listing/linked_list/directory_read_error.c	\
+			./listing/print_flags/print_flag_l.c
 
 MAIN	=	./main.c
 
