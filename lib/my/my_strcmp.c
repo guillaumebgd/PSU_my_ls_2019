@@ -61,7 +61,7 @@ int my_strcmp(char *to_find, char *template)
     if (checker == 1 || checker == 0)
         return (checker == 1) ? 1 : 0;
     change_uppercase(&to_find_dup, &template_dup);
-    result = compare_strings(to_find_dup, template);
+    result = compare_strings(to_find_dup, template_dup);
     free(to_find_dup);
     free(template_dup);
     return (result);

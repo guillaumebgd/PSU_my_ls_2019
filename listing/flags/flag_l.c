@@ -35,6 +35,7 @@ static void print_file_type(file_list_t *tmp)
 
 static void print_first_column(file_list_t *tmp)
 {
+    print_file_type(tmp);
     my_putchar(1, (tmp->file_stat.st_mode & S_IRUSR) ? 'r' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IWUSR) ? 'w' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IXUSR) ? 'x' : '-');
@@ -44,11 +45,12 @@ static void print_first_column(file_list_t *tmp)
     my_putchar(1, (tmp->file_stat.st_mode & S_IROTH) ? 'r' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IWOTH) ? 'w' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IXOTH) ? 'x' : '-');
+    my_putchar(1, ' ');
 }
 
 void print_flag_l(file_list_t *tmp)
 {
-    print_file_type(tmp);
     print_first_column(tmp);
+    my_put_nbr(1, tmp->file_stat.st_size, "0123456789", 10);
     my_putchar(1, ' ');
 }

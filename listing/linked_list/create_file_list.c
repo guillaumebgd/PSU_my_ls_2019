@@ -22,6 +22,16 @@ static int get_file_path(char **file_path,
     return ((*file_path) != NULL) ? 0 : 84;
 }
 
+static void init_nodes_values(file_list_t *node,
+                            struct dirent *dir_stat,
+                            char *file_path)
+{
+    node->name = my_strdup(dir_stat->d_name);
+    stat(file_path, &node->file_stat);
+    node->grp_info = getgrnam(file_path);
+    free(file_path);
+}
+
 static file_list_t *add_node(file_list_t **head,
                             struct dirent *dir_stat,
                             const char *pathway)
@@ -37,9 +47,7 @@ static file_list_t *add_node(file_list_t **head,
         free(file_path);
         return (NULL);
     }
-    new_node->name = my_strdup(dir_stat->d_name);
-    stat(file_path, &new_node->file_stat);
-    free(file_path);
+    init_nodes_values(new_node, dir_stat, file_path);
     new_node->next = (*head);
     new_node->prev = (*head)->prev;
     (*head)->prev->next = new_node;
@@ -63,9 +71,7 @@ static file_list_t *add_first_node(file_list_t **head,
         free(file_path);
         return (NULL);
     }
-    new_node->name = my_strdup(dir_stat->d_name);
-    stat(file_path, &new_node->file_stat);
-    free(file_path);
+    init_nodes_values(new_node, dir_stat, file_path);
     new_node->next = new_node;
     new_node->prev = new_node;
     (*head) = new_node;

@@ -11,6 +11,7 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <grp.h>
 #include <dirent.h>
 
 typedef struct flags_s {
@@ -23,6 +24,7 @@ typedef struct flags_s {
 
 typedef struct file_list_s {
     struct stat file_stat;
+    struct group *grp_info;
     char *name;
     struct file_list_s *next;
     struct file_list_s *prev;
