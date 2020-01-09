@@ -10,31 +10,21 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-void swap_stats(struct stat *first, struct stat *second)
+void swap_stats(file_list_t **first, file_list_t **second)
 {
-    struct stat tmp;
+    struct stat tmp_stat;
+    gid_t tmp_grp;
+    uid_t tmp_pwd;
 
-    tmp = (*first);
-    (*first) = (*second);
-    (*second) = tmp;
-}
-
-void swap_grp(struct group **first, struct group **second)
-{
-    struct group *tmp;
-
-    tmp = (*first);
-    (*first) = (*second);
-    (*second) = tmp;
-}
-
-void swap_pwd(struct passwd **first, struct passwd **second)
-{
-    struct passwd *tmp;
-
-    tmp = (*first);
-    (*first) = (*second);
-    (*second) = tmp;
+    tmp_stat = (*first)->file_stat;
+    (*first)->file_stat = (*second)->file_stat;
+    (*second)->file_stat = tmp_stat;
+    tmp_grp = (*first)->grp_info;
+    (*first)->grp_info = (*second)->grp_info;
+    (*second)->grp_info = tmp_grp;
+    tmp_pwd = (*first)->pwd;
+    (*first)->pwd = (*second)->pwd;
+    (*second)->pwd = tmp_pwd;
 }
 
 static unsigned int check_if_sorted(file_list_t **head)
@@ -68,9 +58,7 @@ void sort_names(file_list_t **head)
         while (tmp != (*head)->prev) {
             if (my_strcmp(tmp->name, tmp->next->name) > 0) {
                 my_str_swap(&tmp->name, &tmp->next->name);
-                swap_stats(&tmp->file_stat, &tmp->next->file_stat);
-                swap_grp(&tmp->grp_info, &tmp->grp_info);
-                swap_pwd(&tmp->pwd, &tmp->pwd);
+                swap_stats(&tmp, &tmp->next);
             }
             tmp = tmp->next;
         }

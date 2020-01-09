@@ -11,7 +11,7 @@
 
 static void print_total_blocks(file_list_t *tmp, file_list_t *end)
 {
-    unsigned int block_size = 0;
+    long int block_size = 0;
 
     while (tmp != end) {
         block_size += tmp->file_stat.st_blocks;

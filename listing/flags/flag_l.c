@@ -36,13 +36,22 @@ static void print_first_column(file_list_t *tmp)
     print_file_type(tmp);
     my_putchar(1, (tmp->file_stat.st_mode & S_IRUSR) ? 'r' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IWUSR) ? 'w' : '-');
-    my_putchar(1, (tmp->file_stat.st_mode & S_IXUSR) ? 'x' : '-');
+    if (tmp->file_stat.st_mode & S_ISUID)
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXUSR) ? 's' : 'S');
+    else
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXUSR) ? 'x' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IRGRP) ? 'r' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IWGRP) ? 'w' : '-');
-    my_putchar(1, (tmp->file_stat.st_mode & S_IXGRP) ? 'x' : '-');
+    if (tmp->file_stat.st_mode & S_ISGID)
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXGRP) ? 's' : 'S');
+    else
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXGRP) ? 'x' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IROTH) ? 'r' : '-');
     my_putchar(1, (tmp->file_stat.st_mode & S_IWOTH) ? 'w' : '-');
-    my_putchar(1, (tmp->file_stat.st_mode & S_IXOTH) ? 'x' : '-');
+    if (tmp->file_stat.st_mode & __S_ISVTX)
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXOTH) ? 't' : 'T');
+    else
+        my_putchar(1, (tmp->file_stat.st_mode & S_IXOTH) ? 'x' : '-');
     my_putchar(1, ' ');
 }
 
@@ -51,9 +60,9 @@ void print_flag_l(file_list_t *tmp)
     print_first_column(tmp);
     my_put_nbr(1, tmp->file_stat.st_nlink, "0123456789", 10);
     my_putchar(1, ' ');
-    my_putstr(1, tmp->pwd->pw_name);
+    my_putstr(1, getpwuid(tmp->pwd)->pw_name);
     my_putchar(1, ' ');
-    my_putstr(1, tmp->grp_info->gr_name);
+    my_putstr(1, getgrgid(tmp->grp_info)->gr_name);
     my_putchar(1, ' ');
     my_put_nbr(1, tmp->file_stat.st_size, "0123456789", 10);
     my_putchar(1, ' ');

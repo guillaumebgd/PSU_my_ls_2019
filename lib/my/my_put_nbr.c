@@ -7,11 +7,12 @@
 
 #include "my.h"
 
-void my_put_nbr(int fd, int nb, char const *base, unsigned int len_base)
+void my_put_nbr(int fd, long int nb, char const *base, unsigned int len_base)
 {
     if (nb < 0) {
         my_putchar(fd, '-');
         my_put_nbr(fd, -nb, base, len_base);
+        return;
     } if (nb >= (int)len_base) {
         my_put_nbr(fd, nb / len_base, base, len_base);
         my_put_nbr(fd, nb % len_base, base, len_base);

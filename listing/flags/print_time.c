@@ -27,7 +27,7 @@ static void print_last_change(char *time_info, unsigned int *i)
 
 void print_time(file_list_t *tmp)
 {
-    char *time_info = ctime(&tmp->file_stat.st_ctime);
+    char *time_info = ctime(&(tmp->file_stat.st_mtime));
     unsigned int i = 4;
 
     print_month_and_nb(time_info, &i);

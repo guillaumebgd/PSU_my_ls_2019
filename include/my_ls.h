@@ -25,8 +25,8 @@ typedef struct flags_s {
 
 typedef struct file_list_s {
     struct stat file_stat;
-    struct group *grp_info;
-    struct passwd *pwd;
+    gid_t grp_info;
+    uid_t pwd;
     char *name;
     struct file_list_s *next;
     struct file_list_s *prev;
@@ -57,9 +57,7 @@ void apply_lower_r(file_list_t **);
 
 void my_ls(file_list_t **, flags_t);
 
-void swap_stats(struct stat *, struct stat *);
-void swap_grp(struct group **, struct group **);
-void swap_pwd(struct passwd **, struct passwd **);
+void swap_stats(file_list_t **, file_list_t **);
 void sort_names(file_list_t **);
 
 void free_list(file_list_t **);
