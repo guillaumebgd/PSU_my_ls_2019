@@ -18,6 +18,8 @@ static void print_stock_files(file_list_t **head)
         my_putchar('\n');
         tmp = tmp->next;
     }
+    my_putstr(tmp->name);
+    my_putchar('\n');
 }
 
 void my_ls(file_list_t **head)

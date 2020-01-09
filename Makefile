@@ -40,7 +40,7 @@ debug:
 valgrind:
 	$(MAKE) -C ./lib/my
 	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
-	valgrind --leak-check=full ./$(NAME) -l
+	valgrind --leak-check=full ./$(NAME) -lR
 	$(RM) $(NAME)
 
 tests_run:
