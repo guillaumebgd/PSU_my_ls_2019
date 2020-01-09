@@ -16,7 +16,7 @@ int main(int ac, char **av)
     if (ac == 1)
         get_info(0, NULL, &head, &mode);
     else
-        get_info(ac - 1, &av[1], &head, &mode);
+        get_info(ac, &av[1], &head, &mode);
     my_ls(&head);
     free_list(&head);
     return (0);

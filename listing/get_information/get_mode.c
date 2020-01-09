@@ -37,7 +37,7 @@ void fill_mode(int ac, char **av,
 
     init_mode(mode);
     while (i < (unsigned int)ac) {
-        if (av[i][0] == '-')
+        if (my_strlen(av[i]) > 0 && av[i][0] == '-')
             get_mode(av[i], mode, assert_flag);
         i += 1;
     }

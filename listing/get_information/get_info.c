@@ -24,7 +24,7 @@ void get_info(int ac, char **av, file_list_t **head, flags_t *mode)
         return;
     }
     while (i < (unsigned int)ac) {
-        if (av[i][0] != '-')
+        if (my_strlen(av[i]) > 0 && av[i][0] != '-')
             create_file_list(head, av[i]);
         i += 1;
     }

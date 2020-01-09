@@ -10,9 +10,13 @@
 
 void free_list(file_list_t **head)
 {
-    file_list_t *save = (*head)->prev;
-    file_list_t *tmp = (*head);
+    file_list_t *save = NULL;
+    file_list_t *tmp = NULL;
 
+    if ((*head) == NULL)
+        return;
+    save = (*head)->prev;
+    tmp = (*head);
     while (tmp != save) {
         (*head) = (*head)->next;
         if (tmp->name != NULL)
