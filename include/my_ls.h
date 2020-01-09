@@ -53,7 +53,8 @@ void flag_t(flags_t *);
 void create_file_list(file_list_t **, const char *);
 
 void my_ls(file_list_t **);
-
 void sort_names(file_list_t **);
+
+void free_list(file_list_t **);
 
 #endif /* MY_LS_H_ */

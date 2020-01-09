@@ -13,6 +13,7 @@ SRC		=	./listing/my_ls.c							\
 			./listing/initializers/init_set_mode.c		\
 			./listing/initializers/init_modes.c			\
 			./listing/linked_list/create_file_list.c	\
+			./listing/linked_list/free_list.c
 
 MAIN	=	./main.c
 

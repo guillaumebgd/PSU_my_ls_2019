@@ -7,7 +7,7 @@
 
 #include "my_ls.h"
 #include "my.h"
-#include <stddef.h>
+#include <stdlib.h>
 
 void get_info(int ac, char **av, file_list_t **head, flags_t *mode)
 {
@@ -18,6 +18,7 @@ void get_info(int ac, char **av, file_list_t **head, flags_t *mode)
     if (assert_flag == NULL)
         return;
     fill_mode(ac, av, mode, assert_flag);
+    free(assert_flag);
     if (ac == 0) {
         create_file_list(head, "./");
         return;
