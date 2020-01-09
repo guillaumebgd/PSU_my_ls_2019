@@ -59,6 +59,7 @@ void my_ls(file_list_t **, flags_t);
 
 void swap_stats(file_list_t **, file_list_t **);
 void sort_names(file_list_t **);
+void sort_last_edit(file_list_t **);
 
 void free_list(file_list_t **);
 

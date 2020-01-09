@@ -7,6 +7,7 @@
 
 SRC		=	./listing/my_ls.c								\
 			./listing/sort_names.c							\
+			./listing/sort_last_edit.c						\
 			./listing/get_information/set_mode.c			\
 			./listing/get_information/get_info.c			\
 			./listing/get_information/get_mode.c			\
