@@ -19,10 +19,3 @@ void directory_error(int error, const char *pathway)
         my_putstr(2, ": No such file or directory\n");
     }
 }
-
-/*    EACCES
-    EBADF
-    EMFILE
-    ENOENT
-    ENOMEM
-    ENOTDIR*/
