@@ -11,13 +11,16 @@
 
 void directory_error(int error, const char *pathway)
 {
-    if (error == ENOENT) {
+    if (error == EPERM || error == ENOENT) {
         my_putstr(2, "./my_ls: cannot access ");
         my_putchar(2, '\'');
         my_putstr(2, pathway);
         my_putchar(2, '\'');
-        my_putstr(2, ": No such file or directory\n");
     }
+    if (error == EPERM)
+        my_putstr(2, ": Permission denied\n");
+    if (error == ENOENT)
+        my_putstr(2, ": No such file or directory\n");
     if (error == ENOTDIR) {
         my_putstr(1, pathway);
         my_putchar(1, '\n');
