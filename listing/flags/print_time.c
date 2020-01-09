@@ -12,6 +12,8 @@
 static void print_month_and_nb(char *time_info, unsigned int *i)
 {
     while ((*i) < 10) {
+        if ((*i) == 7)
+            (*i) += 1;
         my_putchar(1, time_info[(*i)]);
         (*i) += 1;
     }
