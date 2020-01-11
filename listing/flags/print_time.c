@@ -51,7 +51,6 @@ void print_time(file_list_t *tmp)
     char *time_info = ctime(&(tmp->file_stat.st_mtime));
     unsigned int i = 0;
 
-    //printf("\n\n%s\n\n", time_info);
     if (time_info == NULL)
         return;
     i = print_month(&time_info[4]) + 5;
