@@ -58,6 +58,8 @@ coverage:
 
 clean:
 	$(RM) $(NAME)
+	$(RM) debug
+	$(RM) tests_run
 	$(RM) *.gcda *.gcno
 	$(RM) vgcore.*
 
