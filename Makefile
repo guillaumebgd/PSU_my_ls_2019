@@ -1,60 +1,56 @@
 ##
 ## EPITECH PROJECT, 2019
-## Makefile my_ls_bootstrap
+## Makefile my_ls
 ## File description:
-## compiles c files into a lib
+## compiles c files with libs into my_ls program
 ##
 
-SRC		=	./listing/my_ls.c								\
-			./listing/sort_names.c							\
-			./listing/sort_last_edit.c						\
-			./listing/get_information/set_mode.c			\
-			./listing/get_information/get_info.c			\
-			./listing/get_information/get_mode.c			\
-			./listing/initializers/init_set_mode.c			\
-			./listing/initializers/init_modes.c				\
-			./listing/linked_list/create_file_list.c		\
-			./listing/linked_list/free_list.c				\
-			./listing/linked_list/directory_read_error.c	\
-			./listing/flags/flag_l.c						\
-			./listing/flags/print_time.c					\
-			./listing/flags/flag_lower_r.c
+SRC	=	listing/my_ls.c								\
+		listing/sort_names.c						\
+		listing/sort_last_edit.c					\
+		listing/get_information/set_mode.c			\
+		listing/get_information/get_info.c			\
+		listing/get_information/get_mode.c			\
+		listing/initializers/init_set_mode.c		\
+		listing/initializers/init_modes.c			\
+		listing/linked_list/create_file_list.c		\
+		listing/linked_list/free_list.c				\
+		listing/linked_list/directory_read_error.c	\
+		listing/flags/flag_l.c						\
+		listing/flags/print_time.c					\
+		listing/flags/flag_lower_r.c
 
-MAIN	=	./main.c
+MAIN	=	main.c
 
-CFLAGS	=	-Wall -Wextra -I./include/
+VPATH	=	/usr/local/lib/
 
 NAME	=	my_ls
 
-CRIT	=	-lcriterion --coverage
+CFLAGS	=	-Wall -Wextra
 
-LIB		=	-L./lib/my -lmy
+CPPFLAGS	=	-I./include/
+
+LDFLAGS	=	-L./lib/my
+
+LDLIBS	=	-lmy
+
+LDLIBTEST	=	-lmy -lcriterion
 
 all:	$(NAME)
 
-$(NAME):
-	$(MAKE) -C ./lib/my
-	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS)
+$(NAME):	$(LDLIBTEST)
+	$(CC) -o $@ $(MAIN) $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-debug:
-	$(MAKE) -C ./lib/my
-	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
-	gdb ./$(NAME)
-	$(RM) $(NAME)
+-lmy:
+	$(MAKE) -C lib/my
 
-valgrind:
-	$(MAKE) -C ./lib/my
-	$(CC) -o $(NAME) $(MAIN) $(SRC) $(LIB) $(CFLAGS) -g
-	valgrind --leak-check=full ./$(NAME)
-	$(RM) $(NAME)
+debug: $(LDLIBTEST)
+	$(CC) -g -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-tests_run:
-	$(MAKE) -C ./lib/my
-	$(RM) *.gcda *.gcno
-	$(CC) -o unit_tests $(SRC) tests/*.c $(LIB) $(CRIT) $(CFLAGS)
-	./unit_tests
-	$(RM) unit_tests
-	$(RM) test_*
+tests_run: $(LDLIBTEST)
+	$(CC) -o $@ $(SRC) tests/*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBTEST) --coverage
+	./$@
+	$(RM) $@
 
 coverage:
 	gcovr --exclude tests/
@@ -71,4 +67,5 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY: all debug valgrind tests_run coverage clean fclean re
+.NOTPARALLEL:
+.PHONY: all debug tests_run coverage clean fclean re
