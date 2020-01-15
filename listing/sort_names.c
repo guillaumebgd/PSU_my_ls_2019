@@ -27,10 +27,10 @@ void swap_stats(file_list_t **first, file_list_t **second)
     (*second)->pwd = tmp_pwd;
 }
 
-static unsigned int check_if_sorted(file_list_t **head)
+static int check_if_sorted(file_list_t **head)
 {
     file_list_t *tmp = (*head);
-    unsigned int upper_save = 0;
+    int upper_save = 0;
 
     while (tmp != (*head)->prev) {
         if (my_is_uppercase(tmp->next->name[0]) == 0) {

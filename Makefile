@@ -20,6 +20,8 @@ SRC	=	listing/my_ls.c								\
 		listing/flags/print_time.c					\
 		listing/flags/flag_lower_r.c
 
+SRCTEST	=	tests/test_my_ls_simple.c
+
 MAIN	=	main.c
 
 VPATH	=	/usr/local/lib/
@@ -48,7 +50,7 @@ debug:
 
 tests_run:
 	$(MAKE) -C lib/my
-	$(CC) -o $@ $(SRC) tests/*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBTEST) --coverage
+	$(CC) -o $@ $(SRC) $(SRCTEST) $(CPPFLAGS) $(LDFLAGS) $(LDLIBTEST) --coverage
 	./$@
 	$(RM) $@
 
