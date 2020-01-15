@@ -37,6 +37,8 @@ typedef struct file_list_s {
     gid_t grp_info;
     uid_t pwd;
     char *name;
+    char *pathway;
+    char *symlink_ptr_name;
     struct file_list_s *sub_dir;
     struct file_list_s *next;
     struct file_list_s *prev;

@@ -23,6 +23,16 @@ static void print_total_blocks(file_list_t *tmp, file_list_t *end)
     my_putchar(1, '\n');
 }
 
+static void print_symb_link(file_list_t *tmp)
+{
+    if (tmp->symlink_ptr_name) {
+        my_putstr(1, " -> ");
+        my_putstr(1, tmp->symlink_ptr_name);
+        if (tmp->symlink_ptr_name)
+            free(tmp->symlink_ptr_name);
+    }
+}
+
 static void print_stock_files(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
@@ -33,12 +43,14 @@ static void print_stock_files(file_list_t **head, flags_t mode)
         if (mode.flag_l == TRUE)
             print_flag_l(tmp);
         my_putstr(1, tmp->name);
+        print_symb_link(tmp);
         my_putchar(1, '\n');
         tmp = tmp->next;
     }
     if (mode.flag_l == TRUE)
         print_flag_l(tmp);
     my_putstr(1, tmp->name);
+    print_symb_link(tmp);
     my_putchar(1, '\n');
 }
 
