@@ -41,12 +41,24 @@ static void add_first_file_list(list_file_list_t **list_directories,
     (*list_directories) = new_node;
 }
 
+static int check_for_directory(const int ac, const char * const *av)
+{
+    int i = 0;
+
+    while (av[i] && i < ac) {
+        if (av[i][0] != '-')
+            return (0);
+        i += 1;
+    }
+    return (1);
+}
+
 void fill_list_directories(list_file_list_t **list_directories,
                         const int ac, const char * const *av)
 {
     int i = 0;
 
-    if (ac <= 0 || !av) {
+    if (!av || ac <= 0 || check_for_directory(ac, av) == 1) {
         add_first_file_list(list_directories, ".");
         return;
     }
