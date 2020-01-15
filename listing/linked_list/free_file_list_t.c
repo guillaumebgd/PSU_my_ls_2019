@@ -8,6 +8,18 @@
 #include "my_ls.h"
 #include <stdlib.h>
 
+static void free_each_node(file_list_t **tmp)
+{
+    if ((*tmp)->pathway)
+        free((*tmp)->pathway);
+    if ((*tmp)->name)
+        free((*tmp)->name);
+    if ((*tmp)->sub_dir)
+        free_file_list_t(&(*tmp)->sub_dir);
+    if (*tmp)
+        free(*tmp);
+}
+
 void free_file_list_t(file_list_t **head)
 {
     file_list_t *save = NULL;
@@ -19,14 +31,8 @@ void free_file_list_t(file_list_t **head)
     tmp = (*head);
     while (tmp != save) {
         (*head) = (*head)->next;
-        if (tmp->name != NULL)
-            free(tmp->name);
-        if (tmp != NULL)
-            free(tmp);
+        free_each_node(&tmp);
         tmp = (*head);
     }
-    if (tmp->name != NULL)
-        free(tmp->name);
-    if (tmp != NULL)
-        free(tmp);
+    free_each_node(&tmp);
 }

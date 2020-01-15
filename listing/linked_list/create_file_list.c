@@ -15,11 +15,16 @@ static int get_file_path(char **file_path,
                         const char *d_name,
                         const char *pathway)
 {
+    char *slash_adder = NULL;
+
     if (pathway[my_strlen(pathway) - 1] == '/') {
         (*file_path) = my_strcat(pathway, d_name);
         return ((*file_path)) ? 0 : 84;
     }
-    (*file_path) = my_strcat(my_strcat(pathway, "/"), d_name);
+    slash_adder = my_strcat(pathway, "/");
+    (*file_path) = my_strcat(slash_adder, d_name);
+    if (slash_adder && slash_adder[0] != '\0')
+        free(slash_adder);
     return ((*file_path)) ? 0 : 84;
 }
 

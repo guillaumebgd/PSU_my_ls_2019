@@ -17,6 +17,8 @@ SRC	=	listing/my_ls.c								\
 		listing/initializers/init_modes.c			\
 		listing/linked_list/create_file_list.c		\
 		listing/linked_list/directory_read_error.c	\
+		listing/linked_list/free_list_dir.c			\
+		listing/linked_list/free_file_list_t.c		\
 		listing/flags/flag_l.c						\
 		listing/flags/print_time.c					\
 		listing/flags/flag_lower_r.c

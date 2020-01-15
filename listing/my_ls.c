@@ -38,5 +38,6 @@ int my_ls(const int ac, const char * const *av)
         return (84);
     fill_list_directories(&list_directories, ac - 1, &av[1]);
     print_every_directory(&list_directories, mode);
+    free_list_dir(&list_directories);
     return (0);
 }

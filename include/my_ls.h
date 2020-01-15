@@ -82,6 +82,7 @@ void swap_stats(file_list_t **first, file_list_t **second);
 void sort_names(file_list_t **head);
 void sort_last_edit(file_list_t **head);
 
+void free_list_dir(list_file_list_t **head);
 void free_file_list_t(file_list_t **head);
 
 #endif /* MY_LS_H_ */
