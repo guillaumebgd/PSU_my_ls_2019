@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** my_ls.h
+** header for my_ls
 */
 
 #ifndef MY_LS_H_
@@ -23,6 +23,10 @@ typedef struct flags_s {
     unsigned int flag_t;
 } flags_t;
 
+typedef struct mode_fcter_arr_s {
+    void (*fct_arr)(flags_t *);
+} mode_fcter_arr_t;
+
 typedef struct file_list_s {
     struct stat file_stat;
     gid_t grp_info;
@@ -32,15 +36,18 @@ typedef struct file_list_s {
     struct file_list_s *prev;
 } file_list_t;
 
-typedef struct mode_fcter_arr_s {
-    void (*fct_arr)(flags_t *);
-} mode_fcter_arr_t;
+typedef struct list_file_list_s {
+    char *pathway;
+    file_list_t *head;
+    struct list_file_list_s *next;
+} list_file_list_t;
 
 void init_mode(flags_t *);
 mode_fcter_arr_t *initialize_assert_flag(void);
 
 void get_info(int, char **, file_list_t **, flags_t *);
-void fill_mode(int, char **, flags_t *, mode_fcter_arr_t *);
+void fill_list_directories(int, char **, list_file_list_t **);
+int fill_mode(int, char **, flags_t *);
 
 void flag_l(flags_t *);
 void flag_upper_r(flags_t *);
@@ -55,12 +62,13 @@ void print_flag_l(file_list_t *);
 void print_time(file_list_t *);
 void apply_lower_r(file_list_t **);
 
-void my_ls(file_list_t **, flags_t);
+int my_ls(int, char **);
+void print_ls(file_list_t **, flags_t);
 
 void swap_stats(file_list_t **, file_list_t **);
 void sort_names(file_list_t **);
 void sort_last_edit(file_list_t **);
 
-void free_list(file_list_t **);
+void free_file_list_t(file_list_t **);
 
 #endif /* MY_LS_H_ */

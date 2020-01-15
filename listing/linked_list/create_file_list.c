@@ -14,7 +14,7 @@ static int get_file_path(char **file_path,
                         const char *d_name,
                         const char *pathway)
 {
-    if (d_name[my_strlen(d_name) == '/']) {
+    if (d_name[my_strlen(d_name)] == '/') {
         (*file_path) = my_strcat(pathway, d_name);
         return ((*file_path) != NULL) ? 0 : 84;
     }

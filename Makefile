@@ -8,13 +8,13 @@
 SRC	=	listing/my_ls.c								\
 		listing/sort_names.c						\
 		listing/sort_last_edit.c					\
+		listing/fill_list_directories.c				\
+		listing/print_listing.c						\
 		listing/get_information/set_mode.c			\
-		listing/get_information/get_info.c			\
 		listing/get_information/get_mode.c			\
 		listing/initializers/init_set_mode.c		\
 		listing/initializers/init_modes.c			\
 		listing/linked_list/create_file_list.c		\
-		listing/linked_list/free_list.c				\
 		listing/linked_list/directory_read_error.c	\
 		listing/flags/flag_l.c						\
 		listing/flags/print_time.c					\
@@ -38,16 +38,16 @@ LDLIBTEST	=	-lmy -lcriterion
 
 all:	$(NAME)
 
-$(NAME):	$(LDLIBTEST)
+$(NAME):
+	$(MAKE) -C lib/my
 	$(CC) -o $@ $(MAIN) $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
--lmy:
+debug:
 	$(MAKE) -C lib/my
-
-debug: $(LDLIBTEST)
 	$(CC) -g -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-tests_run: $(LDLIBTEST)
+tests_run:
+	$(MAKE) -C lib/my
 	$(CC) -o $@ $(SRC) tests/*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBTEST) --coverage
 	./$@
 	$(RM) $@

@@ -9,12 +9,12 @@
 #include "my.h"
 #include <stddef.h>
 
-static unsigned int get_nb_nodes(file_list_t **head)
+static int get_nb_nodes(file_list_t **head)
 {
     file_list_t *tmp = NULL;
-    unsigned int i = 1;
+    int i = 1;
 
-    if ((*head) == NULL)
+    if (!(*head))
         return (0);
     tmp = (*head);
     while (tmp != (*head)->prev) {
@@ -28,10 +28,10 @@ void apply_lower_r(file_list_t **head)
 {
     file_list_t *begin = NULL;
     file_list_t *end = NULL;
-    unsigned int pos = 0;
-    unsigned int nb_nodes = 0;
+    int pos = 0;
+    int nb_nodes = 0;
 
-    if ((*head) == NULL || (*head)->next == (*head))
+    if (!(*head) || (*head) == (*head)->next)
         return;
     begin = (*head);
     end = (*head)->prev;

@@ -24,7 +24,7 @@ static unsigned int print_month(const char *shifted_time_info)
 }
 
 static unsigned int print_nb(const char *shifted_time_info,
-                            unsigned int i)
+                            int i)
 {
     int nb = my_getnbr(shifted_time_info);
     int size = my_int_size(nb);
@@ -37,7 +37,7 @@ static unsigned int print_nb(const char *shifted_time_info,
 
 static void print_hours_min(const char *shifted_time_info)
 {
-    unsigned int i = 0;
+    int i = 0;
 
     my_putchar(1, ' ');
     while (i < 5) {
@@ -49,9 +49,9 @@ static void print_hours_min(const char *shifted_time_info)
 void print_time(file_list_t *tmp)
 {
     char *time_info = ctime(&(tmp->file_stat.st_mtime));
-    unsigned int i = 0;
+    int i = 0;
 
-    if (time_info == NULL)
+    if (!time_info)
         return;
     i = print_month(&time_info[4]) + 5;
     if (time_info[i] == ' ') {

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** library
 ** File description:
-** my.h
+** header for libmy
 */
 
 #ifndef MY_H_
