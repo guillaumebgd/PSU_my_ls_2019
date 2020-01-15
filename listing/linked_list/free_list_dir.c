@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** free_list_dir.c
+** frees the list_file_list_t linked list
 */
 
 #include "my_ls.h"

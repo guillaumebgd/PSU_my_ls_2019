@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** flag_lower_r.c
+** reverses the usual print
 */
 
 #include "my_ls.h"

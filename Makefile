@@ -6,8 +6,6 @@
 ##
 
 SRC	=	listing/my_ls.c								\
-		listing/sort_names.c						\
-		listing/sort_last_edit.c					\
 		listing/fill_list_directories.c				\
 		listing/print_listing.c						\
 		listing/check_for_subdirectories.c			\
@@ -21,7 +19,9 @@ SRC	=	listing/my_ls.c								\
 		listing/linked_list/free_file_list_t.c		\
 		listing/flags/flag_l.c						\
 		listing/flags/print_time.c					\
-		listing/flags/flag_lower_r.c
+		listing/flags/flag_lower_r.c				\
+		listing/flags/sort_names.c					\
+		listing/flags/sort_last_edit.c
 
 SRCTEST	=	tests/test_my_ls_simple.c
 

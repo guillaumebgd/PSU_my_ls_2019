@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** assert_mode.c
+** redirection to assert a flag value if found
 */
 
 #include "my_ls.h"

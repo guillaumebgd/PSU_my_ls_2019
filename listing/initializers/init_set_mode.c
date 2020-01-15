@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** init_assert_mode.c
+** initializes the assert flag functer array
 */
 
 #include "my_ls.h"

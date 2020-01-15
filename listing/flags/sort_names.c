@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** sort_stock_files.c
+** sorts name by ascii order treating uppercases as lowercases
 */
 
 #include "my_ls.h"

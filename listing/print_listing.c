@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** single_arg.c
+** prints a directory
 */
 
 #include "my_ls.h"

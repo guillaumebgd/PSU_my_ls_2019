@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** init_modes.c
+** initializes flags
 */
 
 #include "my_ls.h"

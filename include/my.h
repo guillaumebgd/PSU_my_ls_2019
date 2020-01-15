@@ -14,11 +14,11 @@ int my_strlen(char const *str);
 int my_putstr(const int fd, char const *str);
 int my_is_uppercase(const char c);
 int my_strcmp(const char *to_find, const char *template);
-char *my_strdup(char const *);
-char *my_strcat(char const *, char const *);
-void my_str_swap(char **, char **);
-int my_int_size(int);
-void my_put_nbr(int, long int, char const *, unsigned int);
-int my_getnbr(char const *);
+char *my_strdup(const char *template);
+char *my_strcat(const char *first, const char *second);
+void my_str_swap(char **first, char **second);
+int my_int_size(const int nb);
+void my_put_nbr(int fd, long int nb, const char *base, unsigned int len_base);
+int my_getnbr(const char *str);
 
 #endif /* MY_H_ */

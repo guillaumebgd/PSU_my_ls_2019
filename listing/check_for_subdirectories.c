@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** check_for_subdirectories.c
+** checks if a directory exists in a list to call its print
 */
 
 #include "my_ls.h"

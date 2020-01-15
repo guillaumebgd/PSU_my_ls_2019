@@ -17,7 +17,9 @@ Test(my_ls, simple_my_ls_no_flag)
     my_ls(2, (const char * const *)argv);
     cr_assert_stdout_eq_str("flag_l.c\n"
                             "flag_lower_r.c\n"
-                            "print_time.c\n");
+                            "print_time.c\n"
+                            "sort_last_edit.c\n"
+                            "sort_names.c\n");
 }
 
 Test(my_ls, simple_my_ls_only_reverse_flag)
@@ -26,7 +28,9 @@ Test(my_ls, simple_my_ls_only_reverse_flag)
 
     cr_redirect_stdout();
     my_ls(3, (const char * const *)argv);
-    cr_assert_stdout_eq_str("print_time.c\n"
+    cr_assert_stdout_eq_str("sort_names.c\n"
+                            "sort_last_edit.c\n"
+                            "print_time.c\n"
                             "flag_lower_r.c\n"
                             "flag_l.c\n");
 }

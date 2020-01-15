@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** print_flag_l.c
+** prints detailled information of files
 */
 
 #include "my_ls.h"

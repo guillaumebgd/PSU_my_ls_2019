@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** print_time.c
+** prints time when -l is used
 */
 
 #include "my_ls.h"

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** directory_read_error.c
+** treats errors when a file couldn't be read
 */
 
 #include "my.h"
