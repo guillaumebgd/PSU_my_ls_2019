@@ -9,25 +9,25 @@
 
 void flag_l(flags_t *mode)
 {
-    mode->flag_l = 1;
+    mode->flag_l = TRUE;
 }
 
 void flag_upper_r(flags_t *mode)
 {
-    mode->flag_upper_r = 1;
+    mode->flag_upper_r = TRUE;
 }
 
 void flag_d(flags_t *mode)
 {
-    mode->flag_d = 1;
+    mode->flag_d = TRUE;
 }
 
 void flag_lower_r(flags_t *mode)
 {
-    mode->flag_lower_r = 1;
+    mode->flag_lower_r = TRUE;
 }
 
 void flag_t(flags_t *mode)
 {
-    mode->flag_t = 1;
+    mode->flag_t = TRUE;
 }

@@ -27,16 +27,16 @@ static void print_stock_files(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
 
-    if (mode.flag_l == 1)
+    if (mode.flag_l == TRUE)
         print_total_blocks(tmp, (*head)->prev);
     while (tmp != (*head)->prev) {
-        if (mode.flag_l == 1)
+        if (mode.flag_l == TRUE)
             print_flag_l(tmp);
         my_putstr(1, tmp->name);
         my_putchar(1, '\n');
         tmp = tmp->next;
     }
-    if (mode.flag_l == 1)
+    if (mode.flag_l == TRUE)
         print_flag_l(tmp);
     my_putstr(1, tmp->name);
     my_putchar(1, '\n');
@@ -46,11 +46,11 @@ void print_ls(file_list_t **head, flags_t mode)
 {
     if ((*head) == NULL)
         return;
-    if (mode.flag_t != 1)
+    if (mode.flag_t != TRUE)
         sort_names(head);
     else
         sort_last_edit(head);
-    if (mode.flag_lower_r == 1)
+    if (mode.flag_lower_r == TRUE)
         apply_lower_r(head);
     print_stock_files(head, mode);
 }

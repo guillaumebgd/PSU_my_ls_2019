@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** test_my_ls_simple.c
+** tests basical functions of my_ls
 */
 
 #include "my_ls.h"

@@ -16,8 +16,8 @@
 #include <dirent.h>
 
 typedef enum BOOLEAN_E {
-    TRUE,
-    FALSE
+    TRUE = 1,
+    FALSE = 0
 } BOOLEAN;
 
 typedef struct flags_s {

@@ -62,10 +62,10 @@ clean:
 	$(RM) $(NAME)
 	$(RM) debug
 	$(RM) tests_run
-	$(RM) *.gcda *.gcno
-	$(RM) vgcore.*
 
 fclean:	clean
+	$(RM) *.gcda *.gcno
+	$(RM) vgcore.*
 	$(RM) lib/my/*.a
 	$(RM) lib/my/*.o
 
