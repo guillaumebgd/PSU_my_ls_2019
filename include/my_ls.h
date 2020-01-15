@@ -15,12 +15,17 @@
 #include <pwd.h>
 #include <dirent.h>
 
+typedef enum BOOLEAN_E {
+    TRUE,
+    FALSE
+} BOOLEAN;
+
 typedef struct flags_s {
-    unsigned int flag_l;
-    unsigned int flag_upper_r;
-    unsigned int flag_d;
-    unsigned int flag_lower_r;
-    unsigned int flag_t;
+    BOOLEAN flag_l;
+    BOOLEAN flag_upper_r;
+    BOOLEAN flag_d;
+    BOOLEAN flag_lower_r;
+    BOOLEAN flag_t;
 } flags_t;
 
 typedef struct mode_fcter_arr_s {
@@ -37,18 +42,22 @@ typedef struct file_list_s {
 } file_list_t;
 
 typedef struct list_file_list_s {
-    char *pathway;
     file_list_t *head;
+    char *pathway;
     struct list_file_list_s *next;
 } list_file_list_t;
 
+//initializers
 void init_mode(flags_t *);
 mode_fcter_arr_t *initialize_assert_flag(void);
 
+//compute informations
 void get_info(int, char **, file_list_t **, flags_t *);
-void fill_list_directories(int, char **, list_file_list_t **);
-int fill_mode(int, char **, flags_t *);
+void fill_list_directories(list_file_list_t **,
+                            const int, const char * const *);
+int fill_mode(int, const char * const *, flags_t *);
 
+//flag functions
 void flag_l(flags_t *);
 void flag_upper_r(flags_t *);
 void flag_d(flags_t *);
@@ -62,7 +71,8 @@ void print_flag_l(file_list_t *);
 void print_time(file_list_t *);
 void apply_lower_r(file_list_t **);
 
-int my_ls(int, char **);
+//main compute functions
+int my_ls(const int ac, const char * const *av);
 void print_ls(file_list_t **, flags_t);
 
 void swap_stats(file_list_t **, file_list_t **);

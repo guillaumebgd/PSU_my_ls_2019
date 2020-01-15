@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_ls_2019
 ** File description:
-** fill_list_directories.c
+** computes files given into args into linked lists
 */
 
 #include "my_ls.h"
@@ -41,18 +41,18 @@ static void add_first_file_list(list_file_list_t **list_directories,
     (*list_directories) = new_node;
 }
 
-void fill_list_directories(int ac, char **av,
-                        list_file_list_t **list_directories)
+void fill_list_directories(list_file_list_t **list_directories,
+                        const int ac, const char * const *av)
 {
     int i = 0;
 
-    if (ac == 1 || !av) {
+    if (ac <= 0 || !av) {
         add_first_file_list(list_directories, ".");
         return;
     }
     while (av[i] && i < ac) {
-        if (av[i] && av[i][0] != '-') {
-            if ((*list_directories) == NULL)
+        if (av[i][0] != '-') {
+            if (!(*list_directories))
                 add_first_file_list(list_directories, av[i]);
             else
                 add_file_list(list_directories, av[i]);

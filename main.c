@@ -6,9 +6,8 @@
 */
 
 #include "my_ls.h"
-#include <stddef.h>
 
-int main(int ac, char **av)
+int main(const int ac, const char * const *av)
 {
     if (ac <= 0 || !av)
         return (84);
