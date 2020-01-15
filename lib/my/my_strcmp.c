@@ -50,7 +50,7 @@ int compare_strings(char *to_find_dup, char *template_dup)
     return (save_first - save_second);
 }
 
-int my_strcmp(char *to_find, char *template)
+int my_strcmp(const char *to_find, const char *template)
 {
     char *to_find_dup = my_strdup(to_find);
     char *template_dup = my_strdup(template);

@@ -27,7 +27,10 @@ static void init_nodes_values(file_list_t *node,
                             char *file_path)
 {
     node->name = my_strdup(dir_stat->d_name);
+    node->sub_dir = NULL;
     lstat(file_path, &node->file_stat);
+    if (S_ISDIR(node->file_stat.st_mode))
+        create_file_list(&node->sub_dir, file_path);
     node->grp_info = node->file_stat.st_gid;
     node->pwd = node->file_stat.st_uid;
     free(file_path);

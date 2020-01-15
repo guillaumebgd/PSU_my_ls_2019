@@ -31,7 +31,7 @@ static void get_mode(mode_fcter_arr_t *assert_flag,
     }
 }
 
-int fill_mode(int ac, const char * const *av, flags_t *mode)
+int fill_mode(flags_t *mode, const int ac, const char * const *av)
 {
     mode_fcter_arr_t *assert_flag = NULL;
     int i = 0;

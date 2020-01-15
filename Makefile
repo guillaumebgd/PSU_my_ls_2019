@@ -10,6 +10,7 @@ SRC	=	listing/my_ls.c								\
 		listing/sort_last_edit.c					\
 		listing/fill_list_directories.c				\
 		listing/print_listing.c						\
+		listing/check_for_subdirectories.c			\
 		listing/get_information/set_mode.c			\
 		listing/get_information/get_mode.c			\
 		listing/initializers/init_set_mode.c		\

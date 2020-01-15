@@ -34,7 +34,7 @@ int my_ls(const int ac, const char * const *av)
     list_file_list_t *list_directories = NULL;
     flags_t mode;
 
-    if (fill_mode(ac, av, &mode) == 84)
+    if (fill_mode(&mode, ac, av) == 84)
         return (84);
     fill_list_directories(&list_directories, ac - 1, &av[1]);
     print_every_directory(&list_directories, mode);

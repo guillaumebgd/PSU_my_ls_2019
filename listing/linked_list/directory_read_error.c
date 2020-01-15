@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <unistd.h>
 
-void directory_error(int error, const char *pathway)
+void directory_error(const int error, const char *pathway)
 {
     if (error == ENOENT) {
         my_putstr(2, "./my_ls: cannot access ");

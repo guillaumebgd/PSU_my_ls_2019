@@ -53,4 +53,6 @@ void print_ls(file_list_t **head, flags_t mode)
     if (mode.flag_lower_r == TRUE)
         apply_lower_r(head);
     print_stock_files(head, mode);
+    if (mode.flag_upper_r == TRUE)
+        check_for_subdirectories(head, mode);
 }
