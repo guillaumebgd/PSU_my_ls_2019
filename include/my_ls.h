@@ -70,6 +70,9 @@ void swap_stats(file_list_t **first, file_list_t **second);
 void flag_directory(list_file_list_t **list_directories,
                     const int ac, const char * const *av,
                     int *index_issue);
+int fill_node_info(file_list_t **node,
+                    const char *pathway,
+                    int *index_issue);
 void sort_names(file_list_t **head);
 void sort_last_edit(file_list_t **head);
 

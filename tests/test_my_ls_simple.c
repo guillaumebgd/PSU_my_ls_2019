@@ -15,7 +15,9 @@ Test(my_ls, simple_my_ls_no_flag)
 
     cr_redirect_stdout();
     my_ls(2, (const char * const *)argv);
-    cr_assert_stdout_eq_str("flag_l.c\n"
+    cr_assert_stdout_eq_str("fill_node_info.c\n"
+                            "flag_d.c\n"
+                            "flag_l.c\n"
                             "flag_lower_r.c\n"
                             "print_time.c\n"
                             "sort_last_edit.c\n"
@@ -32,5 +34,7 @@ Test(my_ls, simple_my_ls_only_reverse_flag)
                             "sort_last_edit.c\n"
                             "print_time.c\n"
                             "flag_lower_r.c\n"
-                            "flag_l.c\n");
+                            "flag_l.c\n"
+                            "flag_d.c\n"
+                            "fill_node_info.c\n");
 }

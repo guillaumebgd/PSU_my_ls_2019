@@ -8,32 +8,6 @@
 #include "my_ls.h"
 #include "my.h"
 #include <stdlib.h>
-#include <unistd.h>
-
-static int fill_node_info(file_list_t **node,
-                        const char *pathway,
-                        int *index_issue)
-{
-    size_t size = 0;
-
-    (*node)->name = my_strdup(pathway);
-    (*node)->symlink_ptr_name = NULL;
-    (*node)->sub_dir = NULL;
-    (*node)->pathway = my_strdup(pathway);
-    lstat(pathway, &(*node)->file_stat);
-    if (S_ISLNK((*node)->file_stat.st_mode)) {
-        (*node)->symlink_ptr_name = malloc(sizeof(char) * 4097);
-        if (!((*node)->symlink_ptr_name)) {
-            *index_issue = 84;
-            return (84);
-        }
-        size = readlink(pathway, (*node)->symlink_ptr_name, 4096);
-        (*node)->symlink_ptr_name[size] = '\0';
-    }
-    (*node)->grp_info = (*node)->file_stat.st_gid;
-    (*node)->pwd = (*node)->file_stat.st_uid;
-    return (0);
-}
 
 static int get_arg_file_info(file_list_t **tmp,
                             const char *pathway,
