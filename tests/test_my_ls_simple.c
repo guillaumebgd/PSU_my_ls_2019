@@ -11,7 +11,7 @@
 
 Test(my_ls, simple_my_ls_no_flag)
 {
-    char *argv[] = {"./my_ls", "./listing/flags/"};
+    char *argv[] = {"./my_ls", "./src/flags/"};
 
     cr_redirect_stdout();
     my_ls(2, (const char * const *)argv);
@@ -26,7 +26,7 @@ Test(my_ls, simple_my_ls_no_flag)
 
 Test(my_ls, simple_my_ls_only_reverse_flag)
 {
-    char *argv[] = {"./my_ls", "-r", "./listing/flags/"};
+    char *argv[] = {"./my_ls", "-r", "./src/flags/"};
 
     cr_redirect_stdout();
     my_ls(3, (const char * const *)argv);
