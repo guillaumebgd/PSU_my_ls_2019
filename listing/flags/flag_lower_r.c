@@ -37,7 +37,6 @@ void apply_lower_r(file_list_t **head)
     end = (*head)->prev;
     nb_nodes = get_nb_nodes(head);
     while (pos < (nb_nodes / 2)) {
-        my_str_swap(&begin->name, &end->name);
         swap_stats(&begin, &end);
         begin = begin->next;
         end = end->prev;
