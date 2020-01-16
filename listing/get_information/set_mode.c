@@ -14,12 +14,14 @@ void flag_l(flags_t *mode)
 
 void flag_upper_r(flags_t *mode)
 {
-    mode->flag_upper_r = TRUE;
+    if (mode->flag_upper_r == FALSE)
+        mode->flag_upper_r = TRUE;
 }
 
 void flag_d(flags_t *mode)
 {
     mode->flag_d = TRUE;
+    mode->flag_upper_r = BANNED;
 }
 
 void flag_lower_r(flags_t *mode)

@@ -16,6 +16,7 @@
 #include <dirent.h>
 
 typedef enum boolean_e {
+    BANNED = 2,
     TRUE = 1,
     FALSE = 0
 } boolean;
@@ -66,6 +67,9 @@ void print_flag_l(file_list_t *tmp);
 void print_time(file_list_t *tmp);
 void apply_lower_r(file_list_t **head);
 void swap_stats(file_list_t **first, file_list_t **second);
+void flag_directory(list_file_list_t **list_directories,
+                    const int ac, const char * const *av,
+                    int *index_issue);
 void sort_names(file_list_t **head);
 void sort_last_edit(file_list_t **head);
 
@@ -79,6 +83,7 @@ void fill_list_directories(list_file_list_t **head,
                             int *index_issue);
 int fill_mode(flags_t *mode, const int ac, const char * const *av);
 void check_for_subdirectories(file_list_t **head, flags_t mode);
+int check_for_path(const int ac, const char * const *av);
 
 //linked lists handling
 int create_file_list(file_list_t **head, const char *pathway,

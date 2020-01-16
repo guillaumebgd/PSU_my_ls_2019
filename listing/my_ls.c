@@ -13,8 +13,13 @@ static int is_sub_dir(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
 
-    if (mode.flag_upper_r == FALSE)
+    if (mode.flag_upper_r == FALSE || !tmp)
         return (1);
+    if (tmp == (*head)->prev) {
+        if (tmp->sub_dir)
+            return (0);
+        return (1);
+    }
     while (tmp != (*head)->prev) {
         if (tmp->sub_dir)
             return (0);
@@ -56,7 +61,10 @@ int my_ls(const int ac, const char * const *av)
 
     if (fill_mode(&mode, ac, av) == 84)
         return (84);
-    fill_list_directories(&list_directories, ac - 1, &av[1], &index_issue);
+    if (mode.flag_d == FALSE)
+        fill_list_directories(&list_directories, ac - 1, &av[1], &index_issue);
+    else
+        flag_directory(&list_directories, ac - 1, &av[1], &index_issue);
     if (!list_directories)
         return (84);
     print_every_directory(&list_directories, mode);

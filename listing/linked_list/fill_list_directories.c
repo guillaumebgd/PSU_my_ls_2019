@@ -47,7 +47,7 @@ static void add_first_file_list(list_file_list_t **list_directories,
     (*list_directories) = new_node;
 }
 
-static int check_for_directory(const int ac, const char * const *av)
+int check_for_path(const int ac, const char * const *av)
 {
     int i = 0;
 
@@ -65,7 +65,7 @@ void fill_list_directories(list_file_list_t **list_directories,
 {
     int i = 0;
 
-    if (!av || ac <= 0 || check_for_directory(ac, av) == 1) {
+    if (!av || ac <= 0 || check_for_path(ac, av) == 1) {
         add_first_file_list(list_directories, ".", index_issue);
         return;
     }

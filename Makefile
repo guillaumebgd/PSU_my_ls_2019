@@ -18,6 +18,7 @@ SRC	=	listing/my_ls.c									\
 		listing/linked_list/free_list_dir.c				\
 		listing/linked_list/free_file_list_t.c			\
 		listing/flags/flag_l.c							\
+		listing/flags/flag_d.c							\
 		listing/flags/print_time.c						\
 		listing/flags/flag_lower_r.c					\
 		listing/flags/sort_names.c						\
