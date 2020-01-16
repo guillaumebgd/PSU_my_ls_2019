@@ -9,22 +9,42 @@
 #include "my.h"
 #include <stddef.h>
 
+static int is_there_sub_dir(file_list_t **head, flags_t mode)
+{
+    file_list_t *tmp = (*head);
+
+    if (mode.flag_upper_r == FALSE)
+        return (1);
+    while (tmp != (*head)->prev) {
+        if (tmp->sub_dir)
+            return (0);
+        tmp = tmp->next;
+    }
+    if (tmp->sub_dir)
+        return (0);
+    return (1);
+}
+
 static void print_every_directory(list_file_list_t **list_directories,
                                 flags_t mode)
 {
     list_file_list_t *tmp = (*list_directories);
-    int several_dir_calls = 0;
+    boolean sort_recurse = FALSE;
 
-    if (tmp->next)
-        several_dir_calls = 1;
+    if ((*list_directories)->next || mode.flag_upper_r == TRUE
+        || is_there_sub_dir(&(*list_directories)->head, mode) == 0)
+        sort_recurse = TRUE;
     while (tmp) {
-        if (several_dir_calls == 1) {
+        if (sort_recurse == TRUE) {
             if (tmp != (*list_directories))
                 my_putchar(1, '\n');
             my_putstr(1, tmp->pathway);
             my_putstr(1, ":\n");
         }
-        print_ls(&tmp->head, mode);
+        if (!(*list_directories)->next
+            && is_there_sub_dir(&tmp->head, mode) == 1)
+            sort_recurse = FALSE;
+        print_ls(&tmp->head, mode, &sort_recurse);
         tmp = tmp->next;
     }
 }

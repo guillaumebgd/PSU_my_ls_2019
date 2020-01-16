@@ -15,17 +15,17 @@
 #include <pwd.h>
 #include <dirent.h>
 
-typedef enum BOOLEAN_E {
+typedef enum boolean_e {
     TRUE = 1,
     FALSE = 0
-} BOOLEAN;
+} boolean;
 
 typedef struct flags_s {
-    BOOLEAN flag_l;
-    BOOLEAN flag_upper_r;
-    BOOLEAN flag_d;
-    BOOLEAN flag_lower_r;
-    BOOLEAN flag_t;
+    boolean flag_l;
+    boolean flag_upper_r;
+    boolean flag_d;
+    boolean flag_lower_r;
+    boolean flag_t;
 } flags_t;
 
 typedef struct mode_fcter_arr_s {
@@ -71,7 +71,7 @@ void sort_last_edit(file_list_t **head);
 
 //main compute functions
 int my_ls(const int ac, const char * const *av);
-void print_ls(file_list_t **head, flags_t mode);
+void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive);
 
 //compute informations
 void fill_list_directories(list_file_list_t **head,

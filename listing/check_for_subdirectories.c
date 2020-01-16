@@ -11,13 +11,15 @@
 
 static void recursive_call(file_list_t *tmp, flags_t mode, int *no_return)
 {
+    boolean sort_recursive = FALSE;
+
     if (*no_return == FALSE)
         my_putchar(1, '\n');
     else
         *no_return = FALSE;
     my_putstr(1, tmp->pathway);
     my_putstr(1, ":\n");
-    print_ls(&tmp->sub_dir, mode);
+    print_ls(&tmp->sub_dir, mode, &sort_recursive);
 }
 
 void check_for_subdirectories(file_list_t **head, flags_t mode)

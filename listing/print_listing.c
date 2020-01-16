@@ -54,7 +54,7 @@ static void print_stock_files(file_list_t **head, flags_t mode)
     my_putchar(1, '\n');
 }
 
-void print_ls(file_list_t **head, flags_t mode)
+void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive)
 {
     if ((*head) == NULL)
         return;
@@ -65,6 +65,11 @@ void print_ls(file_list_t **head, flags_t mode)
     if (mode.flag_lower_r == TRUE)
         apply_lower_r(head);
     print_stock_files(head, mode);
-    if (mode.flag_upper_r == TRUE)
+    if (mode.flag_upper_r == TRUE) {
+        if (*sort_recursive == TRUE) {
+            my_putchar(1, '\n');
+            *sort_recursive = FALSE;
+        }
         check_for_subdirectories(head, mode);
+    }
 }
