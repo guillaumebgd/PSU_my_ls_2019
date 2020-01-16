@@ -31,10 +31,8 @@ void sort_last_edit(file_list_t **head)
         return;
     while (check_if_sorted(head) == 1) {
         while (tmp != (*head)->prev) {
-            if (tmp->file_stat.st_mtime < tmp->next->file_stat.st_mtime) {
-                my_str_swap(&tmp->name, &tmp->next->name);
+            if (tmp->file_stat.st_mtime < tmp->next->file_stat.st_mtime)
                 swap_stats(&tmp, &tmp->next);
-            }
             tmp = tmp->next;
         }
         tmp = (*head);

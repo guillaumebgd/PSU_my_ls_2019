@@ -10,21 +10,34 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-void swap_stats(file_list_t **first, file_list_t **second)
+static void swap_ids(file_list_t **first, file_list_t **second)
 {
-    struct stat tmp_stat;
+    file_list_t *tmp_sub_dir = NULL;
     gid_t tmp_grp;
     uid_t tmp_pwd;
 
-    tmp_stat = (*first)->file_stat;
-    (*first)->file_stat = (*second)->file_stat;
-    (*second)->file_stat = tmp_stat;
+    tmp_sub_dir = (*first)->sub_dir;
+    (*first)->sub_dir = (*second)->sub_dir;
+    (*second)->sub_dir = tmp_sub_dir;
     tmp_grp = (*first)->grp_info;
     (*first)->grp_info = (*second)->grp_info;
     (*second)->grp_info = tmp_grp;
     tmp_pwd = (*first)->pwd;
     (*first)->pwd = (*second)->pwd;
     (*second)->pwd = tmp_pwd;
+}
+
+void swap_stats(file_list_t **first, file_list_t **second)
+{
+    struct stat tmp_stat;
+
+    tmp_stat = (*first)->file_stat;
+    (*first)->file_stat = (*second)->file_stat;
+    (*second)->file_stat = tmp_stat;
+    my_str_swap(&(*first)->name, &(*second)->name);
+    my_str_swap(&(*first)->pathway, &(*second)->pathway);
+    my_str_swap(&(*first)->symlink_ptr_name, &(*second)->symlink_ptr_name);
+    swap_ids(first, second);
 }
 
 static int check_if_sorted(file_list_t **head)
@@ -51,15 +64,14 @@ static int check_if_sorted(file_list_t **head)
 void sort_names(file_list_t **head)
 {
     file_list_t *tmp = (*head);
+    int v;
 
     if ((*head) == NULL || (*head)->prev == (*head))
         return;
     while (check_if_sorted(head) == 1) {
         while (tmp != (*head)->prev) {
-            if (my_strcmp(tmp->name, tmp->next->name) > 0) {
-                my_str_swap(&tmp->name, &tmp->next->name);
+            if (my_strcmp(tmp->name, tmp->next->name) > 0)
                 swap_stats(&tmp, &tmp->next);
-            }
             tmp = tmp->next;
         }
         tmp = (*head);
