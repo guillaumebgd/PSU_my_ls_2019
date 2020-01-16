@@ -13,11 +13,12 @@ static void print_total_blocks(file_list_t *tmp, file_list_t *end)
 {
     long int block_size = 0;
 
-    while (tmp != end) {
+    while (end && tmp != end->prev) {
         block_size += tmp->file_stat.st_blocks;
         tmp = tmp->next;
     }
-    block_size += tmp->file_stat.st_blocks;
+    if (end)
+        block_size += tmp->file_stat.st_blocks;
     my_putstr(1, "total ");
     my_put_nbr(1, block_size / 2, "0123456789", 10);
     my_putchar(1, '\n');
@@ -38,8 +39,10 @@ static void print_stock_files(file_list_t **head, flags_t mode)
     file_list_t *tmp = (*head);
 
     if (mode.flag_l == TRUE && mode.flag_d == FALSE)
-        print_total_blocks(tmp, (*head)->prev);
-    while (tmp != (*head)->prev) {
+        print_total_blocks(tmp, (*head));
+    if (!(*head))
+        return;
+    while ((*head) && tmp != (*head)->prev) {
         if (mode.flag_l == TRUE)
             print_flag_l(tmp);
         my_putstr(1, tmp->name);
@@ -56,8 +59,6 @@ static void print_stock_files(file_list_t **head, flags_t mode)
 
 void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive)
 {
-    if (!(*head))
-        return;
     if (mode.flag_t != TRUE)
         sort_names(head);
     else
@@ -65,6 +66,8 @@ void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive)
     if (mode.flag_lower_r == TRUE)
         apply_lower_r(head);
     print_stock_files(head, mode);
+    if (!(*head))
+        return;
     if (mode.flag_upper_r == TRUE) {
         if (*sort_recursive == TRUE) {
             my_putchar(1, '\n');
