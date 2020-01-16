@@ -37,7 +37,7 @@ static void print_stock_files(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
 
-    if (mode.flag_l == TRUE)
+    if (mode.flag_l == TRUE && mode.flag_d == FALSE)
         print_total_blocks(tmp, (*head)->prev);
     while (tmp != (*head)->prev) {
         if (mode.flag_l == TRUE)
