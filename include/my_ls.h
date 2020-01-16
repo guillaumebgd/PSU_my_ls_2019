@@ -75,7 +75,8 @@ void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive);
 
 //compute informations
 void fill_list_directories(list_file_list_t **head,
-                            const int ac, const char * const *av);
+                            const int ac, const char * const *av,
+                            int *index_issue);
 int fill_mode(flags_t *mode, const int ac, const char * const *av);
 void check_for_subdirectories(file_list_t **head, flags_t mode);
 

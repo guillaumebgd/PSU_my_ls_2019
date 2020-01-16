@@ -10,35 +10,43 @@
 #include <stdlib.h>
 
 static void add_file_list(list_file_list_t **list_directories,
-                            const char *pathway)
+                            const char *pathway, int *index_issue)
 {
     list_file_list_t *new_node = malloc(sizeof(list_file_list_t));
     list_file_list_t *tmp = NULL;
 
-    if (!(*list_directories) || !new_node)
+    if (!(*list_directories) || !new_node) {
+        *index_issue = 84;
         return;
+    }
     tmp = (*list_directories);
     while (tmp->next)
         tmp = tmp->next;
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway) == 84)
+    if (create_file_list(&new_node->head, pathway) == 84) {
+        *index_issue = 84;
         return;
+    }
     new_node->next = NULL;
     tmp->next = new_node;
 }
 
 static void add_first_file_list(list_file_list_t **list_directories,
-                                const char *pathway)
+                                const char *pathway, int *index_issue)
 {
     list_file_list_t *new_node = malloc(sizeof(list_file_list_t));
 
-    if (!new_node)
+    if (!new_node) {
+        *index_issue = 84;
         return;
+    }
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway) == 84)
+    if (create_file_list(&new_node->head, pathway) == 84) {
+        *index_issue = 84;
         return;
+    }
     new_node->next = NULL;
     (*list_directories) = new_node;
 }
@@ -56,20 +64,21 @@ static int check_for_directory(const int ac, const char * const *av)
 }
 
 void fill_list_directories(list_file_list_t **list_directories,
-                        const int ac, const char * const *av)
+                        const int ac, const char * const *av,
+                        int *index_issue)
 {
     int i = 0;
 
     if (!av || ac <= 0 || check_for_directory(ac, av) == 1) {
-        add_first_file_list(list_directories, ".");
+        add_first_file_list(list_directories, ".", index_issue);
         return;
     }
     while (av[i] && i < ac) {
         if (av[i][0] != '-') {
             if (!(*list_directories))
-                add_first_file_list(list_directories, av[i]);
+                add_first_file_list(list_directories, av[i], index_issue);
             else
-                add_file_list(list_directories, av[i]);
+                add_file_list(list_directories, av[i], index_issue);
         }
         i += 1;
     }

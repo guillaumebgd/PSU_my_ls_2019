@@ -52,13 +52,14 @@ int my_ls(const int ac, const char * const *av)
 {
     list_file_list_t *list_directories = NULL;
     flags_t mode;
+    int index_issue = 0;
 
     if (fill_mode(&mode, ac, av) == 84)
         return (84);
-    fill_list_directories(&list_directories, ac - 1, &av[1]);
+    fill_list_directories(&list_directories, ac - 1, &av[1], &index_issue);
     if (!list_directories)
         return (84);
     print_every_directory(&list_directories, mode);
     free_list_dir(&list_directories);
-    return (0);
+    return (index_issue);
 }
