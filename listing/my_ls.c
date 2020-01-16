@@ -9,7 +9,7 @@
 #include "my.h"
 #include <stddef.h>
 
-static int is_there_sub_dir(file_list_t **head, flags_t mode)
+static int is_sub_dir(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
 
@@ -32,7 +32,7 @@ static void print_every_directory(list_file_list_t **list_directories,
     boolean sort_recurse = FALSE;
 
     if ((*list_directories)->next || mode.flag_upper_r == TRUE
-        || is_there_sub_dir(&(*list_directories)->head, mode) == 0)
+        || is_sub_dir(&(*list_directories)->head, mode) == 0)
         sort_recurse = TRUE;
     while (tmp) {
         if (sort_recurse == TRUE) {
@@ -41,8 +41,7 @@ static void print_every_directory(list_file_list_t **list_directories,
             my_putstr(1, tmp->pathway);
             my_putstr(1, ":\n");
         }
-        if (!(*list_directories)->next
-            && is_there_sub_dir(&tmp->head, mode) == 1)
+        if (!(*list_directories)->next && is_sub_dir(&tmp->head, mode) == 1)
             sort_recurse = FALSE;
         print_ls(&tmp->head, mode, &sort_recurse);
         tmp = tmp->next;
@@ -57,6 +56,8 @@ int my_ls(const int ac, const char * const *av)
     if (fill_mode(&mode, ac, av) == 84)
         return (84);
     fill_list_directories(&list_directories, ac - 1, &av[1]);
+    if (!list_directories)
+        return (84);
     print_every_directory(&list_directories, mode);
     free_list_dir(&list_directories);
     return (0);

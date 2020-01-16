@@ -56,7 +56,7 @@ static void print_stock_files(file_list_t **head, flags_t mode)
 
 void print_ls(file_list_t **head, flags_t mode, boolean *sort_recursive)
 {
-    if ((*head) == NULL)
+    if (!(*head))
         return;
     if (mode.flag_t != TRUE)
         sort_names(head);
