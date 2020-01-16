@@ -5,22 +5,22 @@
 ## compiles c files with libs into my_ls program
 ##
 
-SRC	=	listing/my_ls.c								\
-		listing/fill_list_directories.c				\
-		listing/print_listing.c						\
-		listing/check_for_subdirectories.c			\
-		listing/get_information/set_mode.c			\
-		listing/get_information/get_mode.c			\
-		listing/initializers/init_set_mode.c		\
-		listing/initializers/init_modes.c			\
-		listing/linked_list/create_file_list.c		\
-		listing/linked_list/directory_read_error.c	\
-		listing/linked_list/free_list_dir.c			\
-		listing/linked_list/free_file_list_t.c		\
-		listing/flags/flag_l.c						\
-		listing/flags/print_time.c					\
-		listing/flags/flag_lower_r.c				\
-		listing/flags/sort_names.c					\
+SRC	=	listing/my_ls.c									\
+		listing/print_listing.c							\
+		listing/check_for_subdirectories.c				\
+		listing/get_information/set_mode.c				\
+		listing/get_information/get_mode.c				\
+		listing/initializers/init_set_mode.c			\
+		listing/initializers/init_modes.c				\
+		listing/linked_list/fill_list_directories.c		\
+		listing/linked_list/create_file_list.c			\
+		listing/linked_list/directory_read_error.c		\
+		listing/linked_list/free_list_dir.c				\
+		listing/linked_list/free_file_list_t.c			\
+		listing/flags/flag_l.c							\
+		listing/flags/print_time.c						\
+		listing/flags/flag_lower_r.c					\
+		listing/flags/sort_names.c						\
 		listing/flags/sort_last_edit.c
 
 SRCTEST	=	tests/test_my_ls_simple.c

@@ -24,10 +24,8 @@ static void add_file_list(list_file_list_t **list_directories,
         tmp = tmp->next;
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway) == 84) {
-        *index_issue = 84;
+    if (create_file_list(&new_node->head, pathway, index_issue) == 84)
         return;
-    }
     new_node->next = NULL;
     tmp->next = new_node;
 }
@@ -43,10 +41,8 @@ static void add_first_file_list(list_file_list_t **list_directories,
     }
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway) == 84) {
-        *index_issue = 84;
+    if (create_file_list(&new_node->head, pathway, index_issue) == 84)
         return;
-    }
     new_node->next = NULL;
     (*list_directories) = new_node;
 }

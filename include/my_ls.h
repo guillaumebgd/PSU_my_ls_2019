@@ -81,8 +81,9 @@ int fill_mode(flags_t *mode, const int ac, const char * const *av);
 void check_for_subdirectories(file_list_t **head, flags_t mode);
 
 //linked lists handling
-int create_file_list(file_list_t **head, const char *pathway);
-void directory_error(const int error, const char *pathway);
+int create_file_list(file_list_t **head, const char *pathway,
+                        int *index_issue);
+void directory_error(const int error, const char *pathway, int *index_issue);
 void free_list_dir(list_file_list_t **head);
 void free_file_list_t(file_list_t **head);
 
