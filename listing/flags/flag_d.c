@@ -54,13 +54,12 @@ static void add_first_file(list_file_list_t **list_directories,
         return;
     }
     new_node->pathway = my_strdup(pathway);
-    new_node->head = malloc(sizeof(file_list_t));
+    if (get_arg_file_info(&new_node->head, pathway, index_issue) == 84)
+        return;
     if (!(new_node->head)) {
         *index_issue = 84;
         return;
     }
-    if (get_arg_file_info(&new_node->head, pathway, index_issue) == 84)
-        return;
     new_node->next = NULL;
     new_node->head->next = new_node->head;
     new_node->head->prev = new_node->head;
