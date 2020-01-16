@@ -25,7 +25,8 @@ SRC	=	listing/my_ls.c									\
 		listing/flags/sort_names.c						\
 		listing/flags/sort_last_edit.c
 
-SRCTEST	=	tests/test_my_ls_simple.c
+SRCTEST	=	tests/test_my_ls_simple.c					\
+			tests/test_my_ls_error.c
 
 MAIN	=	main.c
 

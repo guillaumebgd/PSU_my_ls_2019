@@ -38,3 +38,12 @@ Test(my_ls, simple_my_ls_only_reverse_flag)
                             "flag_d.c\n"
                             "fill_node_info.c\n");
 }
+
+Test(my_ls, simple_no_path_directory_flag)
+{
+    char *argv[] = {"./my_ls", "-d"};
+
+    cr_redirect_stdout();
+    my_ls(2, (const char * const *)argv);
+    cr_assert_stdout_eq_str(".\n");
+}
