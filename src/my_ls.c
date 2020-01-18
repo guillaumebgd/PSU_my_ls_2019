@@ -56,18 +56,18 @@ static void print_every_directory(list_file_list_t **list_directories,
 int my_ls(const int ac, const char * const *av)
 {
     list_file_list_t *list_directories = NULL;
-    flags_t mode;
-    int index_issue = 0;
+    setup_node_t noder;
 
-    if (fill_mode(&mode, ac, av) == 84)
+    noder.index_issue = 0;
+    if (fill_mode(&noder.mode, ac, av) == 84)
         return (84);
-    if (mode.flag_d == FALSE)
-        fill_list_directories(&list_directories, ac - 1, &av[1], &index_issue);
+    if (noder.mode.flag_d == FALSE)
+        fill_list_directories(&list_directories, ac - 1, &av[1], &noder);
     else
-        flag_directory(&list_directories, ac - 1, &av[1], &index_issue);
+        flag_directory(&list_directories, ac - 1, &av[1], &noder.index_issue);
     if (!list_directories)
         return (84);
-    print_every_directory(&list_directories, mode);
+    print_every_directory(&list_directories, noder.mode);
     free_list_dir(&list_directories);
-    return (index_issue);
+    return (noder.index_issue);
 }

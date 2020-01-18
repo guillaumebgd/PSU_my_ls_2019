@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
 static int my_ls_errors(const int error)
 {
@@ -27,7 +28,10 @@ void directory_error(const int error, const char *pathway,
                         int *index_issue)
 {
     if (my_ls_errors(error) == 0) {
-        my_putstr(2, "./my_ls: cannot access ");
+        if (error == EACCES || error == ENOENT)
+            my_putstr(2, "./my_ls: cannot access ");
+        if (error == EPERM)
+            my_putstr(2, "./my_ls: cannot open directory ");
         my_putchar(2, '\'');
         my_putstr(2, pathway);
         my_putchar(2, '\'');
