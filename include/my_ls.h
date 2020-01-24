@@ -102,6 +102,10 @@ int check_for_path(const int ac, const char * const *av);
 //linked lists handling
 int create_file_list(file_list_t **head, const char *pathway,
                         setup_node_t *noder);
+void add_first_file_list(list_file_list_t **list_directories,
+                        const char *pathway, setup_node_t *noder);
+void add_file_list(list_file_list_t **list_directories,
+                    const char *pathway, setup_node_t *noder);
 void directory_error(const int error, const char *pathway, int *index_issue);
 void free_list_dir(list_file_list_t **head);
 void free_file_list_t(file_list_t **head);

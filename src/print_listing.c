@@ -38,7 +38,8 @@ static void print_stock_files(file_list_t **head, flags_t mode)
 {
     file_list_t *tmp = (*head);
 
-    if (mode.flag_l == TRUE && mode.flag_d == FALSE)
+    if (mode.flag_l == TRUE && mode.flag_d == FALSE
+        && (*head)->next != (*head))
         print_total_blocks(tmp, (*head));
     if (!(*head))
         return;

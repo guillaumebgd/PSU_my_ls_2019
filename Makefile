@@ -14,6 +14,7 @@ SRC	=	src/my_ls.c									\
 		src/initializers/init_modes.c				\
 		src/linked_list/fill_list_directories.c		\
 		src/linked_list/create_file_list.c			\
+		src/linked_list/add_directory.c				\
 		src/linked_list/directory_read_error.c		\
 		src/linked_list/free_list_dir.c				\
 		src/linked_list/free_file_list_t.c			\

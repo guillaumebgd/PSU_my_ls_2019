@@ -30,6 +30,15 @@ static int is_sub_dir(file_list_t **head, flags_t mode)
     return (1);
 }
 
+static void print_rec(list_file_list_t *tmp,
+                    list_file_list_t **list_directories)
+{
+    if (tmp != (*list_directories))
+            my_putchar(1, '\n');
+        my_putstr(1, tmp->pathway);
+        my_putstr(1, ":\n");
+}
+
 static void print_every_directory(list_file_list_t **list_directories,
                                 flags_t mode)
 {
@@ -40,12 +49,8 @@ static void print_every_directory(list_file_list_t **list_directories,
         || is_sub_dir(&(*list_directories)->head, mode) == 0)
         sort_recurse = TRUE;
     while (tmp) {
-        if (sort_recurse == TRUE) {
-            if (tmp != (*list_directories))
-                my_putchar(1, '\n');
-            my_putstr(1, tmp->pathway);
-            my_putstr(1, ":\n");
-        }
+        if (sort_recurse == TRUE)
+            print_rec(tmp, list_directories);
         if (!(*list_directories)->next && is_sub_dir(&tmp->head, mode) == 1)
             sort_recurse = FALSE;
         print_ls(&tmp->head, mode, &sort_recurse);

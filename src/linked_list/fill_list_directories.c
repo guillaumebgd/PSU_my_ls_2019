@@ -5,12 +5,38 @@
 ** computes files given into args into linked lists
 */
 
+#include <stdlib.h>
+#include <unistd.h>
 #include "my_ls.h"
 #include "my.h"
-#include <stdlib.h>
 
-static void add_file_list(list_file_list_t **list_directories,
-                            const char *pathway, setup_node_t *noder)
+static void assert_file(file_list_t **node, const char *pathway,
+                        setup_node_t *noder)
+{
+    size_t size = 0;
+
+    *node = malloc(sizeof(file_list_t));
+    if (!(*node))
+        return;
+    (*node)->name = my_strdup(pathway);
+    (*node)->symlink_ptr_name = NULL;
+    (*node)->sub_dir = NULL;
+    (*node)->pathway = my_strdup(pathway);
+    lstat(pathway, &(*node)->file_stat);
+    (*node)->file_type = REG_FILE;
+    if (S_ISLNK((*node)->file_stat.st_mode) && noder->mode.flag_l == TRUE) {
+        (*node)->symlink_ptr_name = malloc(sizeof(char) * 4097);
+        if (!((*node)->symlink_ptr_name))
+            return;
+        size = readlink(pathway, (*node)->symlink_ptr_name, 4096);
+        (*node)->symlink_ptr_name[size] = '\0';
+    }
+    (*node)->grp_info = (*node)->file_stat.st_gid;
+    (*node)->pwd = (*node)->file_stat.st_uid;
+}
+
+void add_file(list_file_list_t **list_directories,
+                const char *pathway, setup_node_t *noder)
 {
     list_file_list_t *new_node = malloc(sizeof(list_file_list_t));
     list_file_list_t *tmp = NULL;
@@ -24,14 +50,15 @@ static void add_file_list(list_file_list_t **list_directories,
         tmp = tmp->next;
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway, noder) == 84)
-        return;
+    assert_file(&(new_node->head), pathway, noder);
     new_node->next = NULL;
+    new_node->head->next = new_node->head;
+    new_node->head->prev = new_node->head;
     tmp->next = new_node;
 }
 
-static void add_first_file_list(list_file_list_t **list_directories,
-                                const char *pathway, setup_node_t *noder)
+void add_first_file(list_file_list_t **list_directories,
+                    const char *pathway, setup_node_t *noder)
 {
     list_file_list_t *new_node = malloc(sizeof(list_file_list_t));
 
@@ -41,22 +68,31 @@ static void add_first_file_list(list_file_list_t **list_directories,
     }
     new_node->pathway = my_strdup(pathway);
     new_node->head = NULL;
-    if (create_file_list(&new_node->head, pathway, noder) == 84)
-        return;
+    assert_file(&(new_node->head), pathway, noder);
     new_node->next = NULL;
+    new_node->head->next = new_node->head;
+    new_node->head->prev = new_node->head;
     (*list_directories) = new_node;
 }
 
-int check_for_path(const int ac, const char * const *av)
+static void check_file_dir(list_file_list_t **list_directories,
+                        const char *pathway, setup_node_t *noder)
 {
+    struct stat file_stat;
     int i = 0;
 
-    while (av[i] && i < ac) {
-        if (av[i][0] != '-')
-            return (0);
-        i += 1;
+    i = stat(pathway, &file_stat);
+    if (!(*list_directories)) {
+        if (S_ISDIR(file_stat.st_mode) || i < 0)
+            add_first_file_list(list_directories, pathway, noder);
+        else
+            add_first_file(list_directories, pathway, noder);
+    } else {
+        if (S_ISDIR(file_stat.st_mode) || i < 0)
+            add_file_list(list_directories, pathway, noder);
+        else
+            add_file(list_directories, pathway, noder);
     }
-    return (1);
 }
 
 void fill_list_directories(list_file_list_t **list_directories,
@@ -70,12 +106,8 @@ void fill_list_directories(list_file_list_t **list_directories,
         return;
     }
     while (av[i] && i < ac) {
-        if (av[i][0] != '-') {
-            if (!(*list_directories))
-                add_first_file_list(list_directories, av[i], noder);
-            else
-                add_file_list(list_directories, av[i], noder);
-        }
+        if (av[i][0] != '-')
+            check_file_dir(list_directories, av[i], noder);
         i += 1;
     }
 }
